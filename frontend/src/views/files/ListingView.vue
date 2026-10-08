@@ -1596,6 +1596,9 @@ export default {
 }
 
 .current-folder-triage {
+  position: sticky;
+  top: 0;
+  z-index: 26;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1612,6 +1615,10 @@ export default {
 .current-folder-triage__folder {
   padding: 0 0.2em;
   color: var(--textSecondary);
+}
+
+.current-folder-triage + .triage-filter-bar {
+  top: 3.45em;
 }
 
 .triage-filter-bar {
