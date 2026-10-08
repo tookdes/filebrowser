@@ -85,7 +85,7 @@
         aria-label="Keep"
         title="Keep (K)"
         @click.stop.prevent="emitTriage('keep')"
-      ><i class="material-symbols">star</i></button>
+      ><i class="material-symbols">check_circle</i></button>
       <button
         type="button"
         class="triage-button triage-button--maybe"
@@ -195,7 +195,7 @@
         aria-label="Keep"
         title="Keep (K)"
         @click.stop.prevent="emitTriage('keep')"
-      ><i class="material-symbols">star</i></button>
+      ><i class="material-symbols">check_circle</i></button>
       <button
         type="button"
         class="triage-button triage-button--maybe"
