@@ -68,6 +68,9 @@ func copyUserSlices(userCopy *users.User, user *users.User) {
 	if user.PinnedItems != nil {
 		userCopy.PinnedItems = copyPinnedItems(user.PinnedItems)
 	}
+	if user.TriageItems != nil {
+		userCopy.TriageItems = copyTriageItems(user.TriageItems)
+	}
 }
 
 func copyWebAuthnCredentials(in []users.WebAuthnCredential) []users.WebAuthnCredential {
@@ -90,6 +93,25 @@ func copyPinnedItems(in users.PinnedItems) users.PinnedItems {
 		dirCopy := make(map[string][]string, len(dirs))
 		for dirPath, names := range dirs {
 			dirCopy[dirPath] = append([]string(nil), names...)
+		}
+		out[srcPath] = dirCopy
+	}
+	return out
+}
+
+func copyTriageItems(in users.TriageItems) users.TriageItems {
+	if in == nil {
+		return nil
+	}
+	out := make(users.TriageItems, len(in))
+	for srcPath, dirs := range in {
+		dirCopy := make(map[string]map[string]string, len(dirs))
+		for dirPath, names := range dirs {
+			nameCopy := make(map[string]string, len(names))
+			for name, status := range names {
+				nameCopy[name] = status
+			}
+			dirCopy[dirPath] = nameCopy
 		}
 		out[srcPath] = dirCopy
 	}
