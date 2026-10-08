@@ -9,7 +9,7 @@
       <button type="button" class="triage-preview-button triage-preview-button--keep"
         :class="{ active: triageStatus === 'keep' }" title="Keep (K)"
         aria-label="Keep" @click="setTriageStatus('keep')">
-        <i class="material-symbols">star</i>
+        <i class="material-symbols">check_circle</i>
       </button>
       <button type="button" class="triage-preview-button triage-preview-button--maybe"
         :class="{ active: triageStatus === 'maybe' }" title="Maybe (M)"
@@ -23,7 +23,7 @@
       </button>
       <button v-if="triageStatus" type="button" class="triage-preview-button"
         title="Clear mark (0)" aria-label="Clear mark" @click="setTriageStatus('')">
-        <i class="material-symbols">restart_alt</i>
+        <i class="material-symbols">restart</i>
       </button>
     </div>
     <!-- Loading overlay during navigation transition -->
