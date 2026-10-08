@@ -83,24 +83,24 @@
         type="button"
         class="triage-button triage-button--keep"
         :class="{ active: triageStatus === 'keep' }"
-        aria-label="Keep"
-        title="Keep"
+        :aria-label="$t('triage.keep')"
+        :title="$t('triage.keep')"
         @click.stop.prevent="emitTriage('keep')"
       ><i class="material-symbols">check_circle</i></button>
       <button
         type="button"
         class="triage-button triage-button--maybe"
         :class="{ active: triageStatus === 'maybe' }"
-        aria-label="Maybe"
-        title="Maybe"
+        :aria-label="$t('triage.maybe')"
+        :title="$t('triage.maybe')"
         @click.stop.prevent="emitTriage('maybe')"
       ><i class="material-symbols">help</i></button>
       <button
         type="button"
         class="triage-button triage-button--reject"
         :class="{ active: triageStatus === 'reject' }"
-        aria-label="Reject"
-        title="Reject"
+        :aria-label="$t('triage.reject')"
+        :title="$t('triage.reject')"
         @click.stop.prevent="emitTriage('reject')"
       ><i class="material-symbols">close</i></button>
     </div>
@@ -194,24 +194,24 @@
         type="button"
         class="triage-button triage-button--keep"
         :class="{ active: triageStatus === 'keep' }"
-        aria-label="Keep"
-        title="Keep"
+        :aria-label="$t('triage.keep')"
+        :title="$t('triage.keep')"
         @click.stop.prevent="emitTriage('keep')"
       ><i class="material-symbols">check_circle</i></button>
       <button
         type="button"
         class="triage-button triage-button--maybe"
         :class="{ active: triageStatus === 'maybe' }"
-        aria-label="Maybe"
-        title="Maybe"
+        :aria-label="$t('triage.maybe')"
+        :title="$t('triage.maybe')"
         @click.stop.prevent="emitTriage('maybe')"
       ><i class="material-symbols">help</i></button>
       <button
         type="button"
         class="triage-button triage-button--reject"
         :class="{ active: triageStatus === 'reject' }"
-        aria-label="Reject"
-        title="Reject"
+        :aria-label="$t('triage.reject')"
+        :title="$t('triage.reject')"
         @click.stop.prevent="emitTriage('reject')"
       ><i class="material-symbols">close</i></button>
     </div>
