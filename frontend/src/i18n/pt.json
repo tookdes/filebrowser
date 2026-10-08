@@ -33,6 +33,24 @@
     "sendToApp": "Enviar para a aplicação",
     "refresh": "Atualizar"
   },
+  "triage": {
+    "toolbar": "Estado de triagem",
+    "all": "Todos",
+    "unmarked": "Não marcado",
+    "keep": "Manter",
+    "maybe": "Talvez",
+    "reject": "Descartar",
+    "currentFolder": "Estado da pasta atual",
+    "keepCurrentFolder": "Manter pasta atual",
+    "maybeCurrentFolder": "Marcar pasta atual como Talvez",
+    "rejectCurrentFolder": "Descartar pasta atual",
+    "deleteRejects": "Eliminar itens descartados ({count})",
+    "clear": "Limpar marca",
+    "keepShortcut": "Manter (K)",
+    "maybeShortcut": "Talvez (2)",
+    "rejectShortcut": "Descartar (X)",
+    "clearShortcut": "Limpar marca (0)"
+  },
   "errors": {
     "forbidden": "Não tem permissões para aceder a isto",
     "internal": "Algo correu bastante mal.",
