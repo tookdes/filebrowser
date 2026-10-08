@@ -321,6 +321,19 @@ func fileInfoFasterImpl(opts utils.FileOptions, user *users.User, s *Service) (*
 			response.PinnedItems = user.PinnedNamesForDirectory(source.Path, response.Path)
 		}
 	}
+	if opts.ShowTriageItems && opts.ShareHash == "" && user != nil {
+		if source, ok := users.ResolveSourceKey(response.Source); ok {
+			if info.Type == "directory" {
+				response.TriageItems = user.TriageItemsForDirectory(source.Path, response.Path)
+			} else {
+				parentDir := strings.TrimSuffix(response.Path, response.Name)
+				if parentDir == "" {
+					parentDir = "/"
+				}
+				response.TriageStatus = user.TriageStatusForItem(source.Path, parentDir, response.Name)
+			}
+		}
+	}
 
 	defer func() {
 		finalizeResponse(response, info, response.RealPath, user, userScope)
