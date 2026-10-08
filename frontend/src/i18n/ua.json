@@ -33,6 +33,24 @@
     "sendToApp": "Надіслати в додаток",
     "refresh": "Оновити"
   },
+  "triage": {
+    "toolbar": "Статус відбору",
+    "all": "Усі",
+    "unmarked": "Без позначки",
+    "keep": "Залишити",
+    "maybe": "Можливо",
+    "reject": "Відхилити",
+    "currentFolder": "Статус поточної папки",
+    "keepCurrentFolder": "Залишити поточну папку",
+    "maybeCurrentFolder": "Позначити поточну папку як «Можливо»",
+    "rejectCurrentFolder": "Відхилити поточну папку",
+    "deleteRejects": "Видалити відхилені елементи ({count})",
+    "clear": "Очистити позначку",
+    "keepShortcut": "Залишити (K)",
+    "maybeShortcut": "Можливо (2)",
+    "rejectShortcut": "Відхилити (X)",
+    "clearShortcut": "Очистити позначку (0)"
+  },
   "errors": {
     "forbidden": "У вас немає прав доступу до цього.",
     "internal": "Щось пішло не так.",
