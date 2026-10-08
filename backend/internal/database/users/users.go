@@ -157,6 +157,26 @@ type Sorting struct {
 	Asc bool   `json:"asc"`
 }
 
+type DisplayPreference struct {
+	Sorting *Sorting `json:"sorting,omitempty"`
+}
+
+// DisplayPreferences maps frontend source key -> route path -> directory display preference.
+type DisplayPreferences map[string]map[string]DisplayPreference
+
+func (d DisplayPreferences) SetSorting(source, path string, sorting Sorting) {
+	if d == nil {
+		return
+	}
+	if d[source] == nil {
+		d[source] = make(map[string]DisplayPreference)
+	}
+	pref := d[source][path]
+	sortingCopy := sorting
+	pref.Sorting = &sortingCopy
+	d[source][path] = pref
+}
+
 type Preview struct {
 	DisableHideSidebar bool `json:"disableHideSidebar"` // disable the hide sidebar preview for previews and editors
 	Image              bool `json:"image"`              // show thumbnail preview image for image files
@@ -173,6 +193,7 @@ type Preview struct {
 // FrontendUser holds fields safe to return from user APIs (embedded on User).
 type FrontendUser struct {
 	NonAdminEditable
+	DisplayPreferences   DisplayPreferences                 `json:"displayPreferences,omitempty" swaggerignore:"true"`
 	DisableSettings     bool                             `json:"disableSettings"`
 	Username            string                           `json:"username"`
 	FrontendScopes      []FrontendScope                  `json:"scopes"`

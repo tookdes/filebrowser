@@ -26,6 +26,7 @@ type UserData struct {
 	ShowFirstLogin           bool                                   `json:"showFirstLogin"`
 	PinnedItems              users.PinnedItems                      `json:"pinnedItems,omitempty"`
 	TriageItems              users.TriageItems                      `json:"triageItems,omitempty"`
+	DisplayPreferences       users.DisplayPreferences               `json:"displayPreferences,omitempty"`
 	Profile                  json.RawMessage                        `json:"profile,omitempty"`
 	Settings                 json.RawMessage                        `json:"settings,omitempty"`
 	BackendSourcePermissions map[string]users.SourceFilePermissions `json:"backendSourcePermissions,omitempty"`
@@ -102,6 +103,7 @@ func finishUserLoad(user *users.User, userDataJSON []byte) error {
 	user.ShowFirstLogin = userData.ShowFirstLogin
 	user.PinnedItems = userData.PinnedItems
 	user.TriageItems = userData.TriageItems
+	user.DisplayPreferences = userData.DisplayPreferences
 	user.BackendSourcePermissions = userData.BackendSourcePermissions
 	if len(userData.Profile) > 0 {
 		if err := settings.ApplyProfileToUser(user, userData.Profile); err != nil {
@@ -164,6 +166,7 @@ func userDataForPersist(user *users.User) UserData {
 		ShowFirstLogin:           user.ShowFirstLogin,
 		PinnedItems:              user.PinnedItems,
 		TriageItems:              user.TriageItems,
+		DisplayPreferences:       user.DisplayPreferences,
 		Profile:                  profileJSON,
 		Settings:                 settingsJSON,
 		BackendSourcePermissions: user.BackendSourcePermissions,

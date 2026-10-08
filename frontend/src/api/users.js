@@ -193,6 +193,15 @@ export async function patchTriageItem({ source, path, name, status = '' }) {
   })
 }
 
+// PATCH /api/users/display-preferences (directory-scoped sorting)
+export async function patchDisplayPreference({ source, path, sorting }) {
+  const apiPath = getApiPath('users/display-preferences')
+  await fetchURL(apiPath, {
+    method: 'PATCH',
+    body: JSON.stringify({ source, path, sorting }),
+  })
+}
+
 // DELETE /api/users (remove user)
 // Password-login: tries without X-Password first; on 401 requiring X-Password, opens the prompt and retries.
 // options.skipActorPasswordConfirm / pre-set X-Password skip that flow.

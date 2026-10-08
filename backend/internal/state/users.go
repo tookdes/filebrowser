@@ -71,6 +71,9 @@ func copyUserSlices(userCopy *users.User, user *users.User) {
 	if user.TriageItems != nil {
 		userCopy.TriageItems = copyTriageItems(user.TriageItems)
 	}
+	if user.DisplayPreferences != nil {
+		userCopy.DisplayPreferences = copyDisplayPreferences(user.DisplayPreferences)
+	}
 }
 
 func copyWebAuthnCredentials(in []users.WebAuthnCredential) []users.WebAuthnCredential {
@@ -117,6 +120,27 @@ func copyTriageItems(in users.TriageItems) users.TriageItems {
 	}
 	return out
 }
+
+func copyDisplayPreferences(in users.DisplayPreferences) users.DisplayPreferences {
+	if in == nil {
+		return nil
+	}
+	out := make(users.DisplayPreferences, len(in))
+	for source, paths := range in {
+		pathCopy := make(map[string]users.DisplayPreference, len(paths))
+		for path, pref := range paths {
+			prefCopy := pref
+			if pref.Sorting != nil {
+				sortingCopy := *pref.Sorting
+				prefCopy.Sorting = &sortingCopy
+			}
+			pathCopy[path] = prefCopy
+		}
+		out[source] = pathCopy
+	}
+	return out
+}
+
 
 // GetUserByID retrieves a user by stable numeric id (admin APIs, hashed_tokens lookup).
 func GetUserByID(id uint64) (users.User, error) {

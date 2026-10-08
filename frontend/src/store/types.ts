@@ -96,7 +96,10 @@ export interface DisplayPreference {
     by: string;
     asc: boolean;
   };
+  displayPreferences?: DisplayPreferences;
 }
+
+export type DisplayPreferences = Record<string, Record<string, DisplayPreference>>;
 
 export interface SidebarLink {
   category?: string;
@@ -273,7 +276,7 @@ export interface StoreState {
   activeSettingsView: string;
   isSearchActive: boolean;
   showSidebar: boolean;
-  displayPreferences: unknown;
+  displayPreferences: DisplayPreferences;
   enforcedUserDefaults: {
     listing?: {
       viewMode?: string;
