@@ -206,6 +206,24 @@
     "unpinItem": "Откачане",
     "sendToApp": "Изпращане към приложение"
   },
+  "triage": {
+    "toolbar": "Статус на прегледа",
+    "all": "Всички",
+    "unmarked": "Немаркирани",
+    "keep": "Запази",
+    "maybe": "Може би",
+    "reject": "Отхвърли",
+    "currentFolder": "Статус на текущата папка",
+    "keepCurrentFolder": "Запази текущата папка",
+    "maybeCurrentFolder": "Маркирай текущата папка като „Може би“",
+    "rejectCurrentFolder": "Отхвърли текущата папка",
+    "deleteRejects": "Изтрий отхвърлените елементи ({count})",
+    "clear": "Изчисти маркера",
+    "keepShortcut": "Запази (K)",
+    "maybeShortcut": "Може би (2)",
+    "rejectShortcut": "Отхвърли (X)",
+    "clearShortcut": "Изчисти маркера (0)"
+  },
   "errors": {
     "forbidden": "Нямате права за достъп до това.",
     "internal": "Възникна сериозна грешка.",
