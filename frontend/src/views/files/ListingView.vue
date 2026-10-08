@@ -1551,7 +1551,7 @@ export default {
 }
 
 .triage-filter-button--maybe.active {
-  color: var(--orange);
+  color: var(--icon-orange);
 }
 
 @media (pointer: coarse) {
