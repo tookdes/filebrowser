@@ -34,6 +34,30 @@
       </div>
 
       <div
+        v-if="showTriageControls && req.path && req.path !== '/'"
+        class="current-folder-triage"
+        role="toolbar"
+        aria-label="Current folder triage"
+      >
+        <i class="material-symbols current-folder-triage__folder">folder</i>
+        <button type="button" class="triage-filter-button triage-filter-button--keep"
+          :class="{ active: currentFolderTriageStatus === 'keep' }" title="Keep current folder"
+          aria-label="Keep current folder" @click="setCurrentFolderTriageStatus('keep')">
+          <i class="material-symbols">star</i>
+        </button>
+        <button type="button" class="triage-filter-button triage-filter-button--maybe"
+          :class="{ active: currentFolderTriageStatus === 'maybe' }" title="Maybe current folder"
+          aria-label="Maybe current folder" @click="setCurrentFolderTriageStatus('maybe')">
+          <i class="material-symbols">help</i>
+        </button>
+        <button type="button" class="triage-filter-button triage-filter-button--reject"
+          :class="{ active: currentFolderTriageStatus === 'reject' }" title="Reject current folder"
+          aria-label="Reject current folder" @click="setCurrentFolderTriageStatus('reject')">
+          <i class="material-symbols">close</i>
+        </button>
+      </div>
+
+      <div
         v-if="showTriageControls && totalUnfilteredItems > 0"
         class="triage-filter-bar"
         role="toolbar"
@@ -393,6 +417,9 @@ export default {
     showTriageControls() {
       return getters.isLoggedIn() && !getters.isShare();
     },
+    currentFolderTriageStatus() {
+      return state.req?.triageStatus || "";
+    },
     totalUnfilteredItems() {
       return Array.isArray(state.req?.items) ? state.req.items.length : 0;
     },
@@ -621,6 +648,26 @@ export default {
     }
   },
   methods: {
+    async setCurrentFolderTriageStatus(requestedStatus) {
+      if (!this.showTriageControls || !state.req?.path || state.req.path === "/") return;
+      const normalizedPath = state.req.path.replace(/\/+$/, "");
+      const name = normalizedPath.split("/").pop();
+      if (!name) return;
+      const parentPath = url.getParentDir(state.req.path) || "/";
+      const current = state.req.triageStatus || "";
+      const nextStatus = current === requestedStatus ? "" : requestedStatus;
+      try {
+        await usersApi.patchTriageItem({
+          source: state.req.source,
+          path: parentPath,
+          name,
+          status: nextStatus,
+        });
+        state.req.triageStatus = nextStatus;
+      } catch (error) {
+        notify.showError(error);
+      }
+    },
     async setTriageStatus(item, requestedStatus) {
       if (!this.showTriageControls || !item?.name) return;
       const nextStatus = item.triageStatus === requestedStatus ? "" : requestedStatus;
@@ -1514,6 +1561,25 @@ export default {
 .listing-items {
   position: relative;
   flex: 1;
+}
+
+.current-folder-triage {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.35em;
+  width: fit-content;
+  margin: 0 auto 0.45em;
+  padding: 0.3em 0.45em;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--background) 92%, transparent);
+  box-shadow: 0 1px 7px rgb(0 0 0 / 18%);
+  backdrop-filter: blur(8px);
+}
+
+.current-folder-triage__folder {
+  padding: 0 0.2em;
+  color: var(--textSecondary);
 }
 
 .triage-filter-bar {
