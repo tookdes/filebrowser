@@ -690,7 +690,7 @@ export default {
       const nextStatus = current === requestedStatus ? "" : requestedStatus;
       try {
         await usersApi.patchTriageItem({
-          source: state.req.source,
+          source: state.req.source || state.sources.current,
           path: parentPath,
           name,
           status: nextStatus,
