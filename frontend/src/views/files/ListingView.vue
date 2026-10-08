@@ -43,7 +43,7 @@
         <button type="button" class="triage-filter-button triage-filter-button--keep"
           :class="{ active: currentFolderTriageStatus === 'keep' }" title="Keep current folder"
           aria-label="Keep current folder" @click="setCurrentFolderTriageStatus('keep')">
-          <i class="material-symbols">star</i>
+          <i class="material-symbols">check_circle</i>
         </button>
         <button type="button" class="triage-filter-button triage-filter-button--maybe"
           :class="{ active: currentFolderTriageStatus === 'maybe' }" title="Maybe current folder"
@@ -66,17 +66,17 @@
         <button type="button" class="button button--flat triage-filter-button"
           :class="{ active: triageFilter === 'all' }" title="All"
           @click="triageFilter = 'all'">
-          <i class="material-symbols">filter_alt_off</i>
+          <i class="material-symbols">select_all</i>
         </button>
         <button type="button" class="button button--flat triage-filter-button"
           :class="{ active: triageFilter === 'unmarked' }" title="Unmarked"
           @click="triageFilter = 'unmarked'">
-          <i class="material-symbols">radio_button_unchecked</i>
+          <i class="material-symbols">horizontal_rule</i>
         </button>
         <button type="button" class="button button--flat triage-filter-button triage-filter-button--keep"
           :class="{ active: triageFilter === 'keep' }" title="Keep"
           @click="triageFilter = 'keep'">
-          <i class="material-symbols">star</i>
+          <i class="material-symbols">check_circle</i>
         </button>
         <button type="button" class="button button--flat triage-filter-button triage-filter-button--maybe"
           :class="{ active: triageFilter === 'maybe' }" title="Maybe"
