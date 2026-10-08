@@ -664,13 +664,15 @@ export default {
   },
   methods: {
     syncTriageListingState() {
+      const requestItems = Array.isArray(state.req?.items) ? state.req.items : [];
       const indices = this.allItems
-        .map((item) => item?.index)
-        .filter((index) => Number.isInteger(index));
-      const sameFilter = state.listing.triageFilter === this.triageFilter;
+        .map((item) => requestItems.indexOf(item))
+        .filter((index) => index >= 0);
+      const currentIndices = state.listing.triageVisibleIndices || [];
+      const sameFilter = (state.listing.triageFilter || "all") === this.triageFilter;
       const sameIndices =
-        state.listing.triageVisibleIndices.length === indices.length &&
-        state.listing.triageVisibleIndices.every((value, index) => value === indices[index]);
+        currentIndices.length === indices.length &&
+        currentIndices.every((value, index) => value === indices[index]);
       if (sameFilter && sameIndices) return;
       mutations.updateListing({
         ...state.listing,
