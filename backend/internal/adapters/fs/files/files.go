@@ -325,10 +325,14 @@ func fileInfoFasterImpl(opts utils.FileOptions, user *users.User, s *Service) (*
 		if source, ok := users.ResolveSourceKey(response.Source); ok {
 			if info.Type == "directory" {
 				response.TriageItems = user.TriageItemsForDirectory(source.Path, response.Path)
-			} else {
-				parentDir := strings.TrimSuffix(response.Path, response.Name)
+			}
+			itemPath := strings.TrimSuffix(response.Path, "/")
+			if itemPath != "" && response.Name != "" {
+				parentDir := strings.TrimSuffix(itemPath, response.Name)
 				if parentDir == "" {
 					parentDir = "/"
+				} else if !strings.HasSuffix(parentDir, "/") {
+					parentDir += "/"
 				}
 				response.TriageStatus = user.TriageStatusForItem(source.Path, parentDir, response.Name)
 			}
