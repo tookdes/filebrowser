@@ -18,18 +18,7 @@ type triageItemPatchRequest struct {
 	Status string `json:"status"`                    // keep, reject, maybe, or empty to clear
 }
 
-// userPatchTriageItemsHandler sets or clears the review state of one file or folder.
-// @Summary Set or clear triage status
-// @Description Stores a per-user Keep, Reject, or Maybe state for one item. Send an empty status to clear it.
-// @Tags Users
-// @Accept json
-// @Produce json
-// @Param body body triageItemPatchRequest true "Triage item"
-// @Success 204 "No Content"
-// @Failure 400 {object} map[string]string "Bad Request"
-// @Failure 403 {object} map[string]string "Forbidden"
-// @Failure 500 {object} map[string]string "Internal Server Error"
-// @Router /api/users/triage-items [patch]
+// userPatchTriageItemsHandler sets or clears the per-user review state of one file or folder.
 func userPatchTriageItemsHandler(w http.ResponseWriter, r *http.Request, d *Context) (int, error) {
 	var body triageItemPatchRequest
 	if err := json.NewDecoder(r.Body).Decode(&body); err != nil {
