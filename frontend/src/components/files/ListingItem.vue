@@ -990,8 +990,8 @@ export default {
 }
 
 .triage-button--maybe.active {
-  color: var(--orange);
-  background: color-mix(in srgb, var(--orange) 18%, var(--background));
+  color: var(--icon-orange);
+  background: color-mix(in srgb, var(--icon-orange) 18%, var(--background));
 }
 
 .listing-items.list .triage-controls,
