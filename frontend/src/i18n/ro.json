@@ -33,6 +33,24 @@
     "sendToApp": "Trimite către aplicație",
     "refresh": "Reîmprospătare"
   },
+  "triage": {
+    "toolbar": "Stare de triere",
+    "all": "Toate",
+    "unmarked": "Nemarcate",
+    "keep": "Păstrează",
+    "maybe": "Poate",
+    "reject": "Respinge",
+    "currentFolder": "Starea dosarului curent",
+    "keepCurrentFolder": "Păstrează dosarul curent",
+    "maybeCurrentFolder": "Marchează dosarul curent ca Poate",
+    "rejectCurrentFolder": "Respinge dosarul curent",
+    "deleteRejects": "Șterge elementele respinse ({count})",
+    "clear": "Șterge marcajul",
+    "keepShortcut": "Păstrează (K)",
+    "maybeShortcut": "Poate (2)",
+    "rejectShortcut": "Respinge (X)",
+    "clearShortcut": "Șterge marcajul (0)"
+  },
   "errors": {
     "forbidden": "Nu ai permisiuni sa accesezi asta.",
     "internal": "Ceva nu a funcționat corect.",
