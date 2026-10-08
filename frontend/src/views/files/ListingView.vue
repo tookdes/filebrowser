@@ -37,22 +37,22 @@
         v-if="showTriageControls && req.path && req.path !== '/'"
         class="current-folder-triage"
         role="toolbar"
-        aria-label="Current folder triage"
+        :aria-label="$t('triage.currentFolder')"
       >
         <i class="material-symbols current-folder-triage__folder">folder</i>
         <button type="button" class="triage-filter-button triage-filter-button--keep"
-          :class="{ active: currentFolderTriageStatus === 'keep' }" title="Keep current folder"
-          aria-label="Keep current folder" @click="setCurrentFolderTriageStatus('keep')">
+          :class="{ active: currentFolderTriageStatus === 'keep' }" :title="$t('triage.keepCurrentFolder')"
+          :aria-label="$t('triage.keepCurrentFolder')" @click="setCurrentFolderTriageStatus('keep')">
           <i class="material-symbols">check_circle</i>
         </button>
         <button type="button" class="triage-filter-button triage-filter-button--maybe"
-          :class="{ active: currentFolderTriageStatus === 'maybe' }" title="Maybe current folder"
-          aria-label="Maybe current folder" @click="setCurrentFolderTriageStatus('maybe')">
+          :class="{ active: currentFolderTriageStatus === 'maybe' }" :title="$t('triage.maybeCurrentFolder')"
+          :aria-label="$t('triage.maybeCurrentFolder')" @click="setCurrentFolderTriageStatus('maybe')">
           <i class="material-symbols">help</i>
         </button>
         <button type="button" class="triage-filter-button triage-filter-button--reject"
-          :class="{ active: currentFolderTriageStatus === 'reject' }" title="Reject current folder"
-          aria-label="Reject current folder" @click="setCurrentFolderTriageStatus('reject')">
+          :class="{ active: currentFolderTriageStatus === 'reject' }" :title="$t('triage.rejectCurrentFolder')"
+          :aria-label="$t('triage.rejectCurrentFolder')" @click="setCurrentFolderTriageStatus('reject')">
           <i class="material-symbols">close</i>
         </button>
       </div>
@@ -61,30 +61,30 @@
         v-if="showTriageControls && totalUnfilteredItems > 0"
         class="triage-filter-bar"
         role="toolbar"
-        aria-label="Triage filter"
+        :aria-label="$t('triage.filter')"
       >
         <button type="button" class="button button--flat triage-filter-button"
-          :class="{ active: triageFilter === 'all' }" title="All"
+          :class="{ active: triageFilter === 'all' }" :title="$t('triage.all')"
           @click="triageFilter = 'all'">
           <i class="material-symbols">select_all</i>
         </button>
         <button type="button" class="button button--flat triage-filter-button"
-          :class="{ active: triageFilter === 'unmarked' }" title="Unmarked"
+          :class="{ active: triageFilter === 'unmarked' }" :title="$t('triage.unmarked')"
           @click="triageFilter = 'unmarked'">
           <i class="material-symbols">horizontal_rule</i>
         </button>
         <button type="button" class="button button--flat triage-filter-button triage-filter-button--keep"
-          :class="{ active: triageFilter === 'keep' }" title="Keep"
+          :class="{ active: triageFilter === 'keep' }" :title="$t('triage.keep')"
           @click="triageFilter = 'keep'">
           <i class="material-symbols">check_circle</i>
         </button>
         <button type="button" class="button button--flat triage-filter-button triage-filter-button--maybe"
-          :class="{ active: triageFilter === 'maybe' }" title="Maybe"
+          :class="{ active: triageFilter === 'maybe' }" :title="$t('triage.maybe')"
           @click="triageFilter = 'maybe'">
           <i class="material-symbols">help</i>
         </button>
         <button type="button" class="button button--flat triage-filter-button triage-filter-button--reject"
-          :class="{ active: triageFilter === 'reject' }" title="Reject"
+          :class="{ active: triageFilter === 'reject' }" :title="$t('triage.reject')"
           @click="triageFilter = 'reject'">
           <i class="material-symbols">close</i>
         </button>
@@ -92,8 +92,8 @@
           v-if="triageFilter === 'reject' && allItems.length > 0 && permissions.modify"
           type="button"
           class="button button--flat triage-delete-reject"
-          title="Delete all visible Reject items"
-          aria-label="Delete all visible Reject items"
+          :title="$t('triage.deleteRejects', { count: allItems.length })"
+          :aria-label="$t('triage.deleteRejects', { count: allItems.length })"
           @click="deleteVisibleRejects"
         >
           <i class="material-symbols">delete</i>
