@@ -672,7 +672,7 @@ export default {
       const sameFilter = (state.listing.triageFilter || "all") === this.triageFilter;
       const sameIndices =
         currentIndices.length === indices.length &&
-        currentIndices.every((value, index) => value === indices[index]);
+        currentIndices.join(",") === indices.join(",");
       if (sameFilter && sameIndices) return;
       mutations.updateListing({
         ...state.listing,
@@ -1617,10 +1617,6 @@ export default {
   color: var(--textSecondary);
 }
 
-.current-folder-triage + .triage-filter-bar {
-  top: 3.45em;
-}
-
 .triage-filter-bar {
   position: sticky;
   top: 0;
@@ -1635,6 +1631,10 @@ export default {
   background: color-mix(in srgb, var(--background) 92%, transparent);
   box-shadow: 0 1px 7px rgb(0 0 0 / 18%);
   backdrop-filter: blur(8px);
+}
+
+.current-folder-triage + .triage-filter-bar {
+  top: 3.45em;
 }
 
 .triage-filter-button {
