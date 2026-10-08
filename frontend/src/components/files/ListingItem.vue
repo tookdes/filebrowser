@@ -948,8 +948,8 @@ export default {
 .triage-controls {
   position: absolute;
   z-index: 20;
-  top: 0.45em;
-  left: 0.45em;
+  right: 0.45em;
+  bottom: 0.45em;
   display: flex;
   gap: 0.25em;
   padding: 0.2em;
