@@ -206,6 +206,22 @@
     "unpinItem": "Losmaken",
     "sendToApp": "Naar app verzenden"
   },
+  "triage": {
+    "toolbar": "Beoordelingsstatus",
+    "all": "Alles",
+    "unmarked": "Ongemarkeerd",
+    "keep": "Behouden",
+    "reject": "Afwijzen",
+    "currentFolder": "Status van huidige map",
+    "keepCurrentFolder": "Huidige map behouden",
+    "rejectCurrentFolder": "Huidige map afwijzen",
+    "deleteRejects": "Afgewezen items verwijderen ({count})",
+    "clear": "Markering wissen",
+    "keepShortcut": "Behouden (K)",
+    "rejectShortcut": "Afwijzen (X)",
+    "clearShortcut": "Markering wissen (0)",
+    "filter": "Beoordelingsstatus"
+  },
   "errors": {
     "forbidden": "U hebt hier geen toegangsrechten.",
     "internal": "Er ging iets niet goed.",

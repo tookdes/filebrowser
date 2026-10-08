@@ -33,6 +33,22 @@
     "sendToApp": "Отправить в приложение",
     "refresh": "Обновить"
   },
+  "triage": {
+    "toolbar": "Статус отбора",
+    "all": "Все",
+    "unmarked": "Без метки",
+    "keep": "Оставить",
+    "reject": "Исключить",
+    "currentFolder": "Статус текущей папки",
+    "keepCurrentFolder": "Оставить текущую папку",
+    "rejectCurrentFolder": "Исключить текущую папку",
+    "deleteRejects": "Удалить исключённые элементы ({count})",
+    "clear": "Снять метку",
+    "keepShortcut": "Оставить (K)",
+    "rejectShortcut": "Исключить (X)",
+    "clearShortcut": "Снять метку (0)",
+    "filter": "Статус отбора"
+  },
   "errors": {
     "forbidden": "У вас нет прав доступа к этому.",
     "internal": "Что-то пошло не так.",

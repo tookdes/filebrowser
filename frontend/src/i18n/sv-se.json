@@ -33,6 +33,22 @@
     "sendToApp": "Skicka till appen",
     "refresh": "Uppdatera"
   },
+  "triage": {
+    "toolbar": "Granskningsstatus",
+    "all": "Alla",
+    "unmarked": "Omarkerade",
+    "keep": "Behåll",
+    "reject": "Avvisa",
+    "currentFolder": "Status för aktuell mapp",
+    "keepCurrentFolder": "Behåll aktuell mapp",
+    "rejectCurrentFolder": "Avvisa aktuell mapp",
+    "deleteRejects": "Ta bort avvisade objekt ({count})",
+    "clear": "Rensa markering",
+    "keepShortcut": "Behåll (K)",
+    "rejectShortcut": "Avvisa (X)",
+    "clearShortcut": "Rensa markering (0)",
+    "filter": "Granskningsstatus"
+  },
   "errors": {
     "forbidden": "Du saknar rättigheter till detta",
     "internal": "Något gick fel",

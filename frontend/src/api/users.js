@@ -184,6 +184,24 @@ export async function patchPinnedItem({ source, path, name, action = 'add' }) {
   })
 }
 
+// PATCH /api/users/triage-items (keep, reject, or empty to clear)
+export async function patchTriageItem({ source, path, name, status = '' }) {
+  const apiPath = getApiPath('users/triage-items')
+  await fetchURL(apiPath, {
+    method: 'PATCH',
+    body: JSON.stringify({ source, path, name, status }),
+  })
+}
+
+// PATCH /api/users/display-preferences (directory-scoped sorting)
+export async function patchDisplayPreference({ source, path, sorting }) {
+  const apiPath = getApiPath('users/display-preferences')
+  await fetchURL(apiPath, {
+    method: 'PATCH',
+    body: JSON.stringify({ source, path, sorting }),
+  })
+}
+
 // DELETE /api/users (remove user)
 // Password-login: tries without X-Password first; on 401 requiring X-Password, opens the prompt and retries.
 // options.skipActorPasswordConfirm / pre-set X-Password skip that flow.

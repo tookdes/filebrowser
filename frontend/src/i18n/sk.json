@@ -33,6 +33,22 @@
     "sendToApp": "Odoslať do aplikácie",
     "refresh": "Obnoviť"
   },
+  "triage": {
+    "toolbar": "Stav triedenia",
+    "all": "Všetko",
+    "unmarked": "Neoznačené",
+    "keep": "Ponechať",
+    "reject": "Vyradiť",
+    "currentFolder": "Stav aktuálneho priečinka",
+    "keepCurrentFolder": "Ponechať aktuálny priečinok",
+    "rejectCurrentFolder": "Vyradiť aktuálny priečinok",
+    "deleteRejects": "Odstrániť vyradené položky ({count})",
+    "clear": "Zrušiť označenie",
+    "keepShortcut": "Ponechať (K)",
+    "rejectShortcut": "Vyradiť (X)",
+    "clearShortcut": "Zrušiť označenie (0)",
+    "filter": "Stav triedenia"
+  },
   "errors": {
     "forbidden": "Nemáte oprávnenie na prístup.",
     "internal": "Niečo sa naozaj pokazilo.",

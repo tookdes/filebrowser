@@ -33,6 +33,22 @@
     "sendToApp": "Naar app verzenden",
     "refresh": "Vernieuwen"
   },
+  "triage": {
+    "toolbar": "Beoordelingsstatus",
+    "all": "Alles",
+    "unmarked": "Ongemarkeerd",
+    "keep": "Behouden",
+    "reject": "Afwijzen",
+    "currentFolder": "Status van huidige map",
+    "keepCurrentFolder": "Huidige map behouden",
+    "rejectCurrentFolder": "Huidige map afwijzen",
+    "deleteRejects": "Afgewezen items verwijderen ({count})",
+    "clear": "Markering wissen",
+    "keepShortcut": "Behouden (K)",
+    "rejectShortcut": "Afwijzen (X)",
+    "clearShortcut": "Markering wissen (0)",
+    "filter": "Beoordelingsstatus"
+  },
   "errors": {
     "forbidden": "U hebt geen rechten om hier toegang toe te krijgen.",
     "internal": "Er ging iets mis.",

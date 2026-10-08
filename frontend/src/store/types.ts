@@ -39,6 +39,7 @@ export interface ReqObject {
   onlyOfficeId?: string;
   hasUpdate?: boolean;
   metadata?: unknown;
+  triageStatus?: "" | "keep" | "reject";
 
   // Directory listing properties
   listing?: FileListItem[];
@@ -96,6 +97,8 @@ export interface DisplayPreference {
     asc: boolean;
   };
 }
+
+export type DisplayPreferences = Record<string, Record<string, DisplayPreference>>;
 
 export interface SidebarLink {
   category?: string;
@@ -227,6 +230,7 @@ export interface UserObject {
     by: string;
     asc: boolean;
   };
+  displayPreferences?: DisplayPreferences;
   dateFormat?: boolean;
   perm?: unknown;
   email?: string;
@@ -272,7 +276,7 @@ export interface StoreState {
   activeSettingsView: string;
   isSearchActive: boolean;
   showSidebar: boolean;
-  displayPreferences: unknown;
+  displayPreferences: DisplayPreferences;
   enforcedUserDefaults: {
     listing?: {
       viewMode?: string;
@@ -351,6 +355,8 @@ export interface StoreState {
     scrolling: boolean;
     scrollRatio: number;
     listingScrollTop: number;
+    triageFilter?: string;
+    triageVisibleIndices?: number[];
   };
   previewRaw: string;
   oldReq: unknown;

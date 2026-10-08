@@ -33,6 +33,22 @@
     "sendToApp": "Wyślij do aplikacji",
     "refresh": "Odśwież"
   },
+  "triage": {
+    "toolbar": "Status selekcji",
+    "all": "Wszystkie",
+    "unmarked": "Nieoznaczone",
+    "keep": "Zachowaj",
+    "reject": "Odrzuć",
+    "currentFolder": "Status bieżącego folderu",
+    "keepCurrentFolder": "Zachowaj bieżący folder",
+    "rejectCurrentFolder": "Odrzuć bieżący folder",
+    "deleteRejects": "Usuń odrzucone elementy ({count})",
+    "clear": "Wyczyść oznaczenie",
+    "keepShortcut": "Zachowaj (K)",
+    "rejectShortcut": "Odrzuć (X)",
+    "clearShortcut": "Wyczyść oznaczenie (0)",
+    "filter": "Status selekcji"
+  },
   "errors": {
     "forbidden": "Nie posiadasz uprawnień potrzebnych, by uzyskać do tego dostęp.",
     "internal": "Pojawił się poważny problem.",

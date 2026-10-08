@@ -17,7 +17,29 @@ import { updateManifestLink } from "@/utils/pwaManifest";
 import { emitStateChanged } from './eventBus';
 import { getters } from "./getters";
 import { state } from "./state";
-import type { SourceInfo, SourceInfoUpdate, UserObject } from "./types";
+import type { DisplayPreferences, SourceInfo, SourceInfoUpdate, UserObject } from "./types";
+
+function mergeDisplayPreferences(
+  localPreferences: DisplayPreferences = {},
+  serverPreferences: DisplayPreferences = {},
+): DisplayPreferences {
+  let merged: DisplayPreferences = { ...localPreferences };
+  for (const [source, serverPaths] of Object.entries(serverPreferences)) {
+    let mergedPaths = {
+      ...((getObjectProperty(merged, source) as Record<string, unknown>) || {}),
+    };
+    for (const [path, serverPreference] of Object.entries(serverPaths || {})) {
+      const localPreference =
+        (getObjectProperty(mergedPaths, path) as Record<string, unknown>) || {};
+      mergedPaths = setObjectProperty(mergedPaths, path, {
+        ...localPreference,
+        ...serverPreference,
+      });
+    }
+    merged = setObjectProperty(merged, source, mergedPaths) as DisplayPreferences;
+  }
+  return merged;
+}
 
 export const mutations = {
   disableEventThemes: () => {
@@ -461,9 +483,9 @@ export const mutations = {
       }
       await setLocale(value.locale);
       state.user = value;
-      state.user.sorting = {} as { by: string; asc: boolean };
-      state.user.sorting.by = "name";
-      state.user.sorting.asc = true;
+      if (!state.user.sorting?.by) {
+        state.user.sorting = { by: "name", asc: true };
+      }
 
       // Ensure fileLoading defaults are set
       if (!state.user.fileLoading) {
@@ -512,9 +534,14 @@ export const mutations = {
         localStorage.setItem(`GallerySize_${encoded}`, String(gallerySize));
       }
 
-      // Load display preferences for the current user
+      // Merge legacy browser-local preferences with server-synced directory preferences.
+      // Server values win for fields that exist on both sides.
       const allPreferences = JSON.parse(localStorage.getItem("displayPreferences") || "{}");
-      state.displayPreferences = allPreferences[state.user.username] || {};
+      const localPreferences = allPreferences[state.user.username] || {};
+      state.displayPreferences = mergeDisplayPreferences(
+        localPreferences,
+        state.user.displayPreferences || {},
+      );
 
     } catch (_error) {
       // Silently ignore errors when loading preferences
@@ -674,11 +701,18 @@ export const mutations = {
       mutations.closeHovers();
       // Clear current selection first
       mutations.resetSelected();
-      // Add all items from current directory to selection by their indices
-      state.req.items.forEach((_item, index) => {
+
+      const triageFilter = state.listing.triageFilter || "all";
+      const triageFiltered = ["unmarked", "keep", "reject"].includes(triageFilter);
+      const indices = triageFiltered
+        ? (state.listing.triageVisibleIndices || [])
+        : state.req.items.map((_item, index) => index);
+
+      // When a triage filter is active, only select items that are currently visible.
+      indices.forEach((index) => {
         mutations.addSelected(index);
       });
-      if (options.multiple) {
+      if (options.multiple && indices.length > 0) {
         mutations.setMultiple(true);
       }
     }
@@ -903,12 +937,8 @@ export const mutations = {
     emitStateChanged();
   },
   updateListingSortConfig: ({ field, asc }) => {
-    if (!state.user.sorting) {
-      state.user.sorting = {} as { by: string; asc: boolean };
-    }
-    state.user.sorting.by = field;
-    state.user.sorting.asc = asc;
-    mutations.updateDisplayPreferences({ sorting: { by: field, asc: asc } });
+    // Sorting is directory-scoped. Do not mutate the user's global default.
+    mutations.updateDisplayPreferences({ sorting: { by: field, asc } });
     emitStateChanged();
   },
   updatePickerSortConfig: ({ field, asc }) => {
@@ -1017,7 +1047,7 @@ export const mutations = {
 
     const newPathLevel = { ...pathLevel, ...payload };
     const newSourceLevel = setObjectProperty(sourceLevel, path, newPathLevel);
-    prefs = setObjectProperty(prefs, source, newSourceLevel);
+    prefs = setObjectProperty(prefs, source, newSourceLevel) as DisplayPreferences;
     state.displayPreferences = prefs;
 
     const isAnonymous = state.user.username === 'anonymous';
@@ -1025,6 +1055,17 @@ export const mutations = {
       let allPrefs = JSON.parse(localStorage.getItem("displayPreferences") || "{}");
       allPrefs = setObjectProperty(allPrefs, state.user.username, prefs);
       localStorage.setItem("displayPreferences", JSON.stringify(allPrefs));
+      state.user.displayPreferences = prefs as DisplayPreferences;
+
+      // Persist directory sorting to the server so the same account gets the
+      // same ordering on iPad, Android, Windows, and macOS.
+      if (!getters.isShare() && payload?.sorting) {
+        void usersApi.patchDisplayPreference({
+          source,
+          path,
+          sorting: payload.sorting,
+        }).catch((error) => notify.showError(error));
+      }
     }
     emitStateChanged();
   },

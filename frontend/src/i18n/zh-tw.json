@@ -33,6 +33,22 @@
     "sendToApp": "傳送至應用程式",
     "refresh": "重新整理"
   },
+  "triage": {
+    "toolbar": "篩選標記",
+    "all": "全部",
+    "unmarked": "未標記",
+    "keep": "保留",
+    "reject": "淘汰",
+    "currentFolder": "目前資料夾標記",
+    "keepCurrentFolder": "保留目前資料夾",
+    "rejectCurrentFolder": "淘汰目前資料夾",
+    "deleteRejects": "刪除淘汰項（{count}）",
+    "clear": "清除標記",
+    "keepShortcut": "保留 (K)",
+    "rejectShortcut": "淘汰 (X)",
+    "clearShortcut": "清除標記 (0)",
+    "filter": "篩選標記"
+  },
   "errors": {
     "forbidden": "沒有權限存取此內容。",
     "internal": "系統發生錯誤。",

@@ -33,6 +33,22 @@
     "sendToApp": "إرسال إلى التطبيق",
     "refresh": "تحديث"
   },
+  "triage": {
+    "toolbar": "حالة المراجعة",
+    "all": "الكل",
+    "unmarked": "غير معلّم",
+    "keep": "احتفاظ",
+    "reject": "استبعاد",
+    "currentFolder": "حالة مراجعة المجلد الحالي",
+    "keepCurrentFolder": "الاحتفاظ بالمجلد الحالي",
+    "rejectCurrentFolder": "استبعاد المجلد الحالي",
+    "deleteRejects": "حذف العناصر المستبعدة ({count})",
+    "clear": "مسح العلامة",
+    "keepShortcut": "احتفاظ (K)",
+    "rejectShortcut": "استبعاد (X)",
+    "clearShortcut": "مسح العلامة (0)",
+    "filter": "حالة المراجعة"
+  },
   "errors": {
     "forbidden": "You don't have permissions to access this.",
     "internal": "لقد حدث خطأ ما.",

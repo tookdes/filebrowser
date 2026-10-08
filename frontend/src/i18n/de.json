@@ -33,6 +33,22 @@
     "sendToApp": "An App senden",
     "refresh": "Aktualisieren"
   },
+  "triage": {
+    "toolbar": "Prüfstatus",
+    "all": "Alle",
+    "unmarked": "Unmarkiert",
+    "keep": "Behalten",
+    "reject": "Verwerfen",
+    "currentFolder": "Prüfstatus des aktuellen Ordners",
+    "keepCurrentFolder": "Aktuellen Ordner behalten",
+    "rejectCurrentFolder": "Aktuellen Ordner verwerfen",
+    "deleteRejects": "Verworfene Elemente löschen ({count})",
+    "clear": "Markierung entfernen",
+    "keepShortcut": "Behalten (K)",
+    "rejectShortcut": "Verwerfen (X)",
+    "clearShortcut": "Markierung entfernen (0)",
+    "filter": "Prüfstatus"
+  },
   "errors": {
     "forbidden": "Sie haben keine Berechtigung dies abzurufen.",
     "internal": "Etwas ist schief gelaufen.",

@@ -58,6 +58,7 @@ type FileOptions struct {
 	AlbumArt                 bool   // whether to get album art from media files
 	ShowHidden               bool   // whether to show hidden files (true = show, false = hide)
 	ShowPinnedItems          bool   // whether to show pinned items
+	ShowTriageItems          bool   // whether to include per-user triage metadata
 	ShareHash                string // when set, pinned items are loaded from this share link
 	HideFileExt              string // Hide files based on extensions (eg: '.lrc' or '.srt')
 	FollowSymlinks           bool   // whether to follow symlinks

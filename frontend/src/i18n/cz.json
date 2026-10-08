@@ -33,6 +33,22 @@
     "sendToApp": "Odeslat do aplikace",
     "refresh": "Obnovit"
   },
+  "triage": {
+    "toolbar": "Stav třídění",
+    "all": "Vše",
+    "unmarked": "Neoznačené",
+    "keep": "Zachovat",
+    "reject": "Vyřadit",
+    "currentFolder": "Stav aktuální složky",
+    "keepCurrentFolder": "Zachovat aktuální složku",
+    "rejectCurrentFolder": "Vyřadit aktuální složku",
+    "deleteRejects": "Smazat vyřazené položky ({count})",
+    "clear": "Zrušit označení",
+    "keepShortcut": "Zachovat (K)",
+    "rejectShortcut": "Vyřadit (X)",
+    "clearShortcut": "Zrušit označení (0)",
+    "filter": "Stav třídění"
+  },
   "errors": {
     "forbidden": "Nemáte oprávnění k přístupu.",
     "internal": "Něco se opravdu pokazilo.",

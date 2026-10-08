@@ -1,5 +1,26 @@
 <template>
   <div id="previewer">
+    <div
+      v-if="showTriageControls && !isDeleted"
+      class="triage-preview-controls"
+      role="toolbar"
+      :aria-label="$t('triage.toolbar')"
+    >
+      <button type="button" class="triage-preview-button triage-preview-button--keep"
+        :class="{ active: triageStatus === 'keep' }" :title="$t('triage.keepShortcut')"
+        :aria-label="$t('triage.keep')" @click="setTriageStatus('keep')">
+        <i class="material-symbols">check_circle</i>
+      </button>
+      <button type="button" class="triage-preview-button triage-preview-button--reject"
+        :class="{ active: triageStatus === 'reject' }" :title="$t('triage.rejectShortcut')"
+        :aria-label="$t('triage.reject')" @click="setTriageStatus('reject')">
+        <i class="material-symbols">close</i>
+      </button>
+      <button v-if="triageStatus" type="button" class="triage-preview-button"
+        :title="$t('triage.clearShortcut')" :aria-label="$t('triage.clear')" @click="setTriageStatus('')">
+        <i class="material-symbols">restart</i>
+      </button>
+    </div>
     <!-- Loading overlay during navigation transition -->
     <div v-if="isTransitioning" class="transition-loading">
       <LoadingSpinner size="medium" />
@@ -85,7 +106,7 @@
 </template>
 <script>
 import { createAsyncComponent } from "@/utils/asyncComponent.js";
-import { resourcesApi, mediaApi } from "@/api";
+import { resourcesApi, mediaApi, usersApi } from "@/api";
 import { ensureViewToken, requestViewIdentity } from "@/api/viewToken.js";
 import { goToItem, removeTrailingSlash, removeLastDir } from "@/utils/url.js";
 import LoadingSpinner from "@/components/LoadingSpinner.vue";
@@ -102,6 +123,7 @@ import {
 } from "@/plyr/pipSession.js";
 import { isPdfFile } from "@/utils/mediaFile";
 import { shouldUsePdfPreviewFallback } from "@/utils/pdfPreview.js";
+import { notify } from "@/notify";
 
 export default {
   name: "preview",
@@ -132,6 +154,12 @@ export default {
   computed: {
     permissions() {
       return getters.sourcePermissions();
+    },
+    showTriageControls() {
+      return getters.isLoggedIn() && !getters.isShare();
+    },
+    triageStatus() {
+      return state.req?.triageStatus || "";
     },
     showImage() {
       if (state.req.type === "image/heic" || state.req.type === "image/heif") {
@@ -301,6 +329,29 @@ export default {
     mutations.clearNavigation();
   },
   methods: {
+    async setTriageStatus(requestedStatus) {
+      if (!this.showTriageControls || !state.req?.name) return;
+      const current = state.req.triageStatus || "";
+      const nextStatus = requestedStatus && current === requestedStatus ? "" : requestedStatus;
+      const directoryPath = removeLastDir(state.req.path) || "/";
+      try {
+        await usersApi.patchTriageItem({
+          source: state.req.source,
+          path: directoryPath,
+          name: state.req.name,
+          status: nextStatus,
+        });
+        state.req.triageStatus = nextStatus;
+        const item = Array.isArray(this.listing)
+          ? this.listing.find((entry) => entry.path === state.req.path)
+          : null;
+        if (item) {
+          item.triageStatus = nextStatus;
+        }
+      } catch (error) {
+        notify.showError(error);
+      }
+    },
     async attachDirMediaMetadata(listing, dirPath) {
       if (!listing?.length) return;
       try {
@@ -528,6 +579,25 @@ export default {
       }
 
       const { key, altKey } = event;
+      const target = event.target;
+      const tag = target?.tagName?.toLowerCase?.() || "";
+      const typing = tag === "input" || tag === "textarea" || tag === "select" || target?.isContentEditable;
+      if (!typing && this.showTriageControls && !altKey) {
+        switch (key.toLowerCase()) {
+          case "k":
+            event.preventDefault();
+            await this.setTriageStatus("keep");
+            return;
+          case "x":
+            event.preventDefault();
+            await this.setTriageStatus("reject");
+            return;
+          case "0":
+            event.preventDefault();
+            await this.setTriageStatus("");
+            return;
+        }
+      }
 
       let shortcut = key;
       if (altKey) shortcut = `Alt+${key}`;
@@ -798,6 +868,57 @@ export default {
   justify-content: center;
   width: 100%;
   min-height: 12rem;
+}
+
+
+.triage-preview-controls {
+  position: fixed;
+  top: 4.25em;
+  right: 1em;
+  z-index: 80;
+  display: flex;
+  gap: 0.35em;
+  padding: 0.35em;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--background) 86%, transparent);
+  box-shadow: 0 2px 12px rgb(0 0 0 / 28%);
+  backdrop-filter: blur(10px);
+}
+
+.triage-preview-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.8em;
+  height: 2.8em;
+  min-width: 2.8em;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  color: var(--textSecondary);
+  background: transparent;
+  cursor: pointer;
+  touch-action: manipulation;
+}
+
+.triage-preview-button.active {
+  color: var(--primaryColor);
+  background: color-mix(in srgb, var(--primaryColor) 20%, var(--background));
+  font-variation-settings: 'FILL' 1;
+}
+
+.triage-preview-button--reject.active {
+  color: var(--red);
+  background: color-mix(in srgb, var(--red) 18%, var(--background));
+}
+
+
+@media (pointer: coarse) {
+  .triage-preview-button {
+    width: 3.2em;
+    height: 3.2em;
+    min-width: 3.2em;
+  }
 }
 
 </style>

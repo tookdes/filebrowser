@@ -33,6 +33,22 @@
     "sendToApp": "שלח לאפליקציה",
     "refresh": "רענן"
   },
+  "triage": {
+    "toolbar": "סטטוס מיון",
+    "all": "הכול",
+    "unmarked": "לא מסומן",
+    "keep": "שמור",
+    "reject": "דחה",
+    "currentFolder": "סטטוס התיקייה הנוכחית",
+    "keepCurrentFolder": "שמור את התיקייה הנוכחית",
+    "rejectCurrentFolder": "דחה את התיקייה הנוכחית",
+    "deleteRejects": "מחק פריטים שנדחו ({count})",
+    "clear": "נקה סימון",
+    "keepShortcut": "שמור (K)",
+    "rejectShortcut": "דחה (X)",
+    "clearShortcut": "נקה סימון (0)",
+    "filter": "סטטוס מיון"
+  },
   "errors": {
     "forbidden": "אין לך הרשאות גישה",
     "internal": "משהו השתבש",

@@ -68,6 +68,12 @@ func copyUserSlices(userCopy *users.User, user *users.User) {
 	if user.PinnedItems != nil {
 		userCopy.PinnedItems = copyPinnedItems(user.PinnedItems)
 	}
+	if user.TriageItems != nil {
+		userCopy.TriageItems = copyTriageItems(user.TriageItems)
+	}
+	if user.DisplayPreferences != nil {
+		userCopy.DisplayPreferences = copyDisplayPreferences(user.DisplayPreferences)
+	}
 }
 
 func copyWebAuthnCredentials(in []users.WebAuthnCredential) []users.WebAuthnCredential {
@@ -95,6 +101,46 @@ func copyPinnedItems(in users.PinnedItems) users.PinnedItems {
 	}
 	return out
 }
+
+func copyTriageItems(in users.TriageItems) users.TriageItems {
+	if in == nil {
+		return nil
+	}
+	out := make(users.TriageItems, len(in))
+	for srcPath, dirs := range in {
+		dirCopy := make(map[string]map[string]string, len(dirs))
+		for dirPath, names := range dirs {
+			nameCopy := make(map[string]string, len(names))
+			for name, status := range names {
+				nameCopy[name] = status
+			}
+			dirCopy[dirPath] = nameCopy
+		}
+		out[srcPath] = dirCopy
+	}
+	return out
+}
+
+func copyDisplayPreferences(in users.DisplayPreferences) users.DisplayPreferences {
+	if in == nil {
+		return nil
+	}
+	out := make(users.DisplayPreferences, len(in))
+	for source, paths := range in {
+		pathCopy := make(map[string]users.DisplayPreference, len(paths))
+		for path, pref := range paths {
+			prefCopy := pref
+			if pref.Sorting != nil {
+				sortingCopy := *pref.Sorting
+				prefCopy.Sorting = &sortingCopy
+			}
+			pathCopy[path] = prefCopy
+		}
+		out[source] = pathCopy
+	}
+	return out
+}
+
 
 // GetUserByID retrieves a user by stable numeric id (admin APIs, hashed_tokens lookup).
 func GetUserByID(id uint64) (users.User, error) {

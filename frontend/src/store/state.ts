@@ -114,6 +114,8 @@ export const state: StoreState = reactive({
     scrolling: false,
     scrollRatio: 0,
     listingScrollTop: 0,
+    triageFilter: "all",
+    triageVisibleIndices: [],
   },
   previewRaw: "",
   oldReq: {},

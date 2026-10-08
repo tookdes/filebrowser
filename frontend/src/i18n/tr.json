@@ -33,6 +33,22 @@
     "sendToApp": "Uygulamaya gönder",
     "refresh": "Yenile"
   },
+  "triage": {
+    "toolbar": "İnceleme durumu",
+    "all": "Tümü",
+    "unmarked": "İşaretlenmemiş",
+    "keep": "Tut",
+    "reject": "Reddet",
+    "currentFolder": "Geçerli klasör durumu",
+    "keepCurrentFolder": "Geçerli klasörü tut",
+    "rejectCurrentFolder": "Geçerli klasörü reddet",
+    "deleteRejects": "Reddedilen öğeleri sil ({count})",
+    "clear": "İşareti temizle",
+    "keepShortcut": "Tut (K)",
+    "rejectShortcut": "Reddet (X)",
+    "clearShortcut": "İşareti temizle (0)",
+    "filter": "İnceleme durumu"
+  },
   "errors": {
     "forbidden": "Buna erişim izniniz yok.",
     "internal": "Bir şeyler ters gitti.",

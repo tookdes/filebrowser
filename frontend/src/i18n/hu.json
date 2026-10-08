@@ -33,6 +33,22 @@
     "sendToApp": "Küldés az alkalmazásba",
     "refresh": "Frissítés"
   },
+  "triage": {
+    "toolbar": "Átvizsgálási állapot",
+    "all": "Mind",
+    "unmarked": "Jelöletlen",
+    "keep": "Megtartás",
+    "reject": "Elvetés",
+    "currentFolder": "Aktuális mappa állapota",
+    "keepCurrentFolder": "Aktuális mappa megtartása",
+    "rejectCurrentFolder": "Aktuális mappa elvetése",
+    "deleteRejects": "Elvetett elemek törlése ({count})",
+    "clear": "Jelölés törlése",
+    "keepShortcut": "Megtartás (K)",
+    "rejectShortcut": "Elvetés (X)",
+    "clearShortcut": "Jelölés törlése (0)",
+    "filter": "Átvizsgálási állapot"
+  },
   "errors": {
     "forbidden": "Nincs jogosultsága a hozzáféréshez.",
     "internal": "Valami nagyon elromlott.",

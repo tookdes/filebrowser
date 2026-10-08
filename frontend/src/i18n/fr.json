@@ -33,6 +33,22 @@
     "sendToApp": "Envoyer vers l'application",
     "refresh": "Actualiser"
   },
+  "triage": {
+    "toolbar": "État de tri",
+    "all": "Tout",
+    "unmarked": "Non marqué",
+    "keep": "Conserver",
+    "reject": "Écarter",
+    "currentFolder": "État du dossier actuel",
+    "keepCurrentFolder": "Conserver le dossier actuel",
+    "rejectCurrentFolder": "Écarter le dossier actuel",
+    "deleteRejects": "Supprimer les éléments écartés ({count})",
+    "clear": "Effacer la marque",
+    "keepShortcut": "Conserver (K)",
+    "rejectShortcut": "Écarter (X)",
+    "clearShortcut": "Effacer la marque (0)",
+    "filter": "État de tri"
+  },
   "errors": {
     "forbidden": "Vous n'avez pas la permission d'accéder à cela.",
     "internal": "Aïe ! Quelque chose s'est mal passé.",

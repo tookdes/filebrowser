@@ -105,6 +105,35 @@ describe('adjustedData', () => {
     expect(adjustedData(input)).toEqual(expected);
   });
 
+  it('maps directory triageItems onto only marked children', () => {
+    const input = {
+      type: "directory",
+      path: "/media/",
+      triageItems: {
+        "keep.mp4": "keep",
+        "maybe": "maybe",
+        "reject.jpg": "reject",
+      },
+      folders: [
+        { name: "maybe", type: "directory" },
+        { name: "unmarked", type: "directory" },
+      ],
+      files: [
+        { name: "keep.mp4", type: "video/mp4" },
+        { name: "reject.jpg", type: "image/jpeg" },
+      ],
+      source: "Media",
+    };
+
+    const result = adjustedData(input);
+
+    expect(result.triageItems).toBeUndefined();
+    expect(result.items.find((item) => item.name === "keep.mp4").triageStatus).toBe("keep");
+    expect(result.items.find((item) => item.name === "maybe")).not.toHaveProperty("triageStatus");
+    expect(result.items.find((item) => item.name === "reject.jpg").triageStatus).toBe("reject");
+    expect(result.items.find((item) => item.name === "unmarked")).not.toHaveProperty("triageStatus");
+  });
+
   it('marks items as pinned from directory pinnedItems names', () => {
     const input = {
       type: "directory",

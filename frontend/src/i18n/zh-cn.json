@@ -33,6 +33,22 @@
     "sendToApp": "发送至应用",
     "refresh": "刷新"
   },
+  "triage": {
+    "toolbar": "筛选标记",
+    "all": "全部",
+    "unmarked": "未标记",
+    "keep": "保留",
+    "reject": "淘汰",
+    "currentFolder": "当前文件夹标记",
+    "keepCurrentFolder": "保留当前文件夹",
+    "rejectCurrentFolder": "淘汰当前文件夹",
+    "deleteRejects": "删除淘汰项（{count}）",
+    "clear": "清除标记",
+    "keepShortcut": "保留 (K)",
+    "rejectShortcut": "淘汰 (X)",
+    "clearShortcut": "清除标记 (0)",
+    "filter": "筛选标记"
+  },
   "errors": {
     "forbidden": "你无权限访问",
     "internal": "服务器出了点问题。",

@@ -206,6 +206,22 @@
     "unpinItem": "Unpin",
     "sendToApp": "Send to app"
   },
+  "triage": {
+    "toolbar": "Review status",
+    "all": "All",
+    "unmarked": "Unmarked",
+    "keep": "Keep",
+    "reject": "Reject",
+    "currentFolder": "Current folder review status",
+    "keepCurrentFolder": "Keep current folder",
+    "rejectCurrentFolder": "Reject current folder",
+    "deleteRejects": "Delete rejected items ({count})",
+    "clear": "Clear mark",
+    "keepShortcut": "Keep (K)",
+    "rejectShortcut": "Reject (X)",
+    "clearShortcut": "Clear mark (0)",
+    "filter": "Review status"
+  },
   "errors": {
     "forbidden": "You don't have permissions to access this.",
     "internal": "Something really went wrong.",
