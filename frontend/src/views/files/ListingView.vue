@@ -88,6 +88,17 @@
           @click="triageFilter = 'reject'">
           <i class="material-symbols">close</i>
         </button>
+        <button
+          v-if="triageFilter === 'reject' && allItems.length > 0 && permissions.modify"
+          type="button"
+          class="button button--flat triage-delete-reject"
+          title="Delete all visible Reject items"
+          aria-label="Delete all visible Reject items"
+          @click="deleteVisibleRejects"
+        >
+          <i class="material-symbols">delete</i>
+          <span>{{ allItems.length }}</span>
+        </button>
       </div>
 
       <!-- Empty state -->
@@ -769,6 +780,22 @@ export default {
     },
     base64(name) {
       return url.base64Encode(name);
+    },
+    deleteVisibleRejects() {
+      if (this.triageFilter !== "reject" || !this.permissions?.modify || this.allItems.length === 0) {
+        return;
+      }
+      const requestItems = Array.isArray(state.req?.items) ? state.req.items : [];
+      mutations.resetSelected();
+      for (const item of this.allItems) {
+        const index = requestItems.indexOf(item);
+        if (index >= 0) {
+          mutations.addSelected(index);
+        }
+      }
+      if (state.selected.length > 0) {
+        this.showDeletePrompt();
+      }
     },
     showDeletePrompt() {
       const items = [];
@@ -1659,11 +1686,32 @@ export default {
   color: var(--icon-orange);
 }
 
+.triage-delete-reject {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25em;
+  min-width: auto;
+  height: 2.4em;
+  padding: 0 0.7em;
+  border-radius: 999px;
+  color: var(--red);
+  background: color-mix(in srgb, var(--red) 12%, var(--background));
+}
+
+.triage-delete-reject .material-symbols {
+  margin: 0;
+}
+
 @media (pointer: coarse) {
   .triage-filter-button {
     width: 2.8em;
     height: 2.8em;
     min-width: 2.8em;
+  }
+
+  .triage-delete-reject {
+    height: 2.8em;
+    padding: 0 0.85em;
   }
 }
 
