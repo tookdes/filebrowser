@@ -1,0 +1,72 @@
+name: Triage V1 Windows Test Build
+
+on:
+  push:
+    branches:
+      - "feature/triage-v1"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  windows-amd64:
+    name: Build Windows amd64 test binary
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: frontend/.nvmrc
+          cache: npm
+          cache-dependency-path: frontend/package-lock.json
+
+      - name: Build frontend for embedding
+        working-directory: frontend
+        run: npm ci && npm run build
+
+      - name: Set up Go
+        uses: actions/setup-go@v5
+        with:
+          go-version: stable
+          cache-dependency-path: backend/go.sum
+
+      - name: Install release toolchain
+        run: sudo apt-get update && sudo apt-get install -y upx build-essential musl-tools
+
+      - name: Set up Zig
+        uses: goto-bus-stop/setup-zig@v2
+
+      - name: Build Windows amd64 with project GoReleaser config
+        uses: goreleaser/goreleaser-action@v6
+        with:
+          distribution: goreleaser
+          version: "~> v2"
+          args: build --snapshot --clean --id windows
+          workdir: backend
+
+      - name: Stage test binary
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p artifacts
+          exe="$(find backend/dist -type f -name 'filebrowser.exe' -print -quit)"
+          if [ -z "$exe" ]; then
+            echo "filebrowser.exe was not produced" >&2
+            find backend/dist -maxdepth 4 -type f -print || true
+            exit 1
+          fi
+          cp "$exe" artifacts/filebrowser-triage-v1-windows-amd64.exe
+          sha256sum artifacts/filebrowser-triage-v1-windows-amd64.exe > artifacts/SHA256.txt
+          ls -lh artifacts
+
+      - name: Upload Windows test artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: filebrowser-triage-v1-windows-amd64
+          path: artifacts/
+          if-no-files-found: error
+          retention-days: 14
