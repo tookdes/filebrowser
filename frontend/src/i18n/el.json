@@ -33,6 +33,24 @@
     "sendToApp": "Αποστολή στην εφαρμογή",
     "refresh": "Ανανέωση"
   },
+  "triage": {
+    "toolbar": "Κατάσταση αξιολόγησης",
+    "all": "Όλα",
+    "unmarked": "Χωρίς σήμανση",
+    "keep": "Διατήρηση",
+    "maybe": "Ίσως",
+    "reject": "Απόρριψη",
+    "currentFolder": "Κατάσταση τρέχοντος φακέλου",
+    "keepCurrentFolder": "Διατήρηση τρέχοντος φακέλου",
+    "maybeCurrentFolder": "Σήμανση τρέχοντος φακέλου ως Ίσως",
+    "rejectCurrentFolder": "Απόρριψη τρέχοντος φακέλου",
+    "deleteRejects": "Διαγραφή απορριφθέντων στοιχείων ({count})",
+    "clear": "Καθαρισμός σήμανσης",
+    "keepShortcut": "Διατήρηση (K)",
+    "maybeShortcut": "Ίσως (2)",
+    "rejectShortcut": "Απόρριψη (X)",
+    "clearShortcut": "Καθαρισμός σήμανσης (0)"
+  },
   "errors": {
     "forbidden": "Δεν έχετε άδεια πρόσβασης σε αυτό.",
     "internal": "Προέκυψε εσωτερικό σφάλμα.",
