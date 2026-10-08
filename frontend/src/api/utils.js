@@ -74,6 +74,7 @@ export async function fetchJSON(url, opts) {
 export function adjustedData(data) {
   if (data.type === "directory") {
     const pinnedNames = new Set(data.pinnedItems || []);
+    const triageItems = data.triageItems || {};
     // Combine folders and files into items
     data.items = [...(data.folders || []), ...(data.files || [])];
     data.items = data.items.map((item) => {
@@ -82,6 +83,7 @@ export function adjustedData(data) {
         item.isShared = false;
       }
       item.pinned = pinnedNames.has(item.name);
+      item.triageStatus = triageItems[item.name] || "";
       if (data.path === "/") {
         if (item.type === "directory") {
         item.path = `/${item.name}/`
@@ -98,6 +100,7 @@ export function adjustedData(data) {
       return item;
     });
     delete data.pinnedItems;
+    delete data.triageItems;
   }
   if (data.files) {
     data.files = []
