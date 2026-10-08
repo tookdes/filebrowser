@@ -23,13 +23,25 @@ func TestTriageItemsSetReplaceClear(t *testing.T) {
 
 func TestTriageItemsForDirectoryReturnsCopy(t *testing.T) {
 	u := &User{TriageItems: make(TriageItems)}
-	u.TriageItems.Set("/srv/media", "/video/", "a.mp4", TriageStatusMaybe)
+	u.TriageItems.Set("/srv/media", "/video/", "a.mp4", TriageStatusReject)
 
 	got := u.TriageItemsForDirectory("/srv/media", "/video/")
 	got["a.mp4"] = TriageStatusKeep
 
-	if status := u.TriageStatusForItem("/srv/media", "/video/", "a.mp4"); status != TriageStatusMaybe {
+	if status := u.TriageStatusForItem("/srv/media", "/video/", "a.mp4"); status != TriageStatusReject {
 		t.Fatalf("mutating returned map changed stored value: %q", status)
+	}
+}
+
+func TestLegacyMaybeStatusIsTreatedAsUnmarked(t *testing.T) {
+	u := &User{TriageItems: make(TriageItems)}
+	u.TriageItems.Set("/srv/media", "/video/", "a.mp4", "maybe")
+
+	if got := u.TriageItemsForDirectory("/srv/media", "/video/"); got != nil {
+		t.Fatalf("expected legacy maybe status to be hidden, got %#v", got)
+	}
+	if status := u.TriageStatusForItem("/srv/media", "/video/", "a.mp4"); status != "" {
+		t.Fatalf("expected legacy maybe status to read as unmarked, got %q", status)
 	}
 }
 
@@ -41,7 +53,7 @@ func TestNormalizeTriageStatus(t *testing.T) {
 	}{
 		{"KEEP", TriageStatusKeep, true},
 		{" reject ", TriageStatusReject, true},
-		{"maybe", TriageStatusMaybe, true},
+		{"maybe", "", false},
 		{"unmarked", "", true},
 		{"", "", true},
 		{"later", "", false},

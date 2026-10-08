@@ -38,18 +38,16 @@
     "all": "Alla",
     "unmarked": "Omarkerade",
     "keep": "Behåll",
-    "maybe": "Kanske",
     "reject": "Avvisa",
     "currentFolder": "Status för aktuell mapp",
     "keepCurrentFolder": "Behåll aktuell mapp",
-    "maybeCurrentFolder": "Markera aktuell mapp som Kanske",
     "rejectCurrentFolder": "Avvisa aktuell mapp",
     "deleteRejects": "Ta bort avvisade objekt ({count})",
     "clear": "Rensa markering",
     "keepShortcut": "Behåll (K)",
-    "maybeShortcut": "Kanske (2)",
     "rejectShortcut": "Avvisa (X)",
-    "clearShortcut": "Rensa markering (0)"
+    "clearShortcut": "Rensa markering (0)",
+    "filter": "Granskningsstatus"
   },
   "errors": {
     "forbidden": "Du saknar rättigheter till detta",

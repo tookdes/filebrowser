@@ -38,18 +38,16 @@
     "all": "Todos",
     "unmarked": "Sin marcar",
     "keep": "Conservar",
-    "maybe": "Tal vez",
     "reject": "Descartar",
     "currentFolder": "Estado de la carpeta actual",
     "keepCurrentFolder": "Conservar carpeta actual",
-    "maybeCurrentFolder": "Marcar carpeta actual como Tal vez",
     "rejectCurrentFolder": "Descartar carpeta actual",
     "deleteRejects": "Eliminar elementos descartados ({count})",
     "clear": "Quitar marca",
     "keepShortcut": "Conservar (K)",
-    "maybeShortcut": "Tal vez (2)",
     "rejectShortcut": "Descartar (X)",
-    "clearShortcut": "Quitar marca (0)"
+    "clearShortcut": "Quitar marca (0)",
+    "filter": "Estado de revisión"
   },
   "errors": {
     "forbidden": "No tienes permisos para acceder.",

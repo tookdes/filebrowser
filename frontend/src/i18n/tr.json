@@ -38,18 +38,16 @@
     "all": "Tümü",
     "unmarked": "İşaretlenmemiş",
     "keep": "Tut",
-    "maybe": "Belki",
     "reject": "Reddet",
     "currentFolder": "Geçerli klasör durumu",
     "keepCurrentFolder": "Geçerli klasörü tut",
-    "maybeCurrentFolder": "Geçerli klasörü Belki olarak işaretle",
     "rejectCurrentFolder": "Geçerli klasörü reddet",
     "deleteRejects": "Reddedilen öğeleri sil ({count})",
     "clear": "İşareti temizle",
     "keepShortcut": "Tut (K)",
-    "maybeShortcut": "Belki (2)",
     "rejectShortcut": "Reddet (X)",
-    "clearShortcut": "İşareti temizle (0)"
+    "clearShortcut": "İşareti temizle (0)",
+    "filter": "İnceleme durumu"
   },
   "errors": {
     "forbidden": "Buna erişim izniniz yok.",

@@ -45,11 +45,6 @@
           :aria-label="$t('triage.keepCurrentFolder')" @click="setCurrentFolderTriageStatus('keep')">
           <i class="material-symbols">check_circle</i>
         </button>
-        <button type="button" class="triage-filter-button triage-filter-button--maybe"
-          :class="{ active: currentFolderTriageStatus === 'maybe' }" :title="$t('triage.maybeCurrentFolder')"
-          :aria-label="$t('triage.maybeCurrentFolder')" @click="setCurrentFolderTriageStatus('maybe')">
-          <i class="material-symbols">help</i>
-        </button>
         <button type="button" class="triage-filter-button triage-filter-button--reject"
           :class="{ active: currentFolderTriageStatus === 'reject' }" :title="$t('triage.rejectCurrentFolder')"
           :aria-label="$t('triage.rejectCurrentFolder')" @click="setCurrentFolderTriageStatus('reject')">
@@ -77,11 +72,6 @@
           :class="{ active: triageFilter === 'keep' }" :title="$t('triage.keep')"
           @click="triageFilter = 'keep'">
           <i class="material-symbols">check_circle</i>
-        </button>
-        <button type="button" class="button button--flat triage-filter-button triage-filter-button--maybe"
-          :class="{ active: triageFilter === 'maybe' }" :title="$t('triage.maybe')"
-          @click="triageFilter = 'maybe'">
-          <i class="material-symbols">help</i>
         </button>
         <button type="button" class="button button--flat triage-filter-button triage-filter-button--reject"
           :class="{ active: triageFilter === 'reject' }" :title="$t('triage.reject')"
@@ -1682,9 +1672,6 @@ export default {
   color: var(--red);
 }
 
-.triage-filter-button--maybe.active {
-  color: var(--icon-orange);
-}
 
 .triage-delete-reject {
   display: inline-flex;

@@ -38,18 +38,16 @@
     "all": "Mind",
     "unmarked": "Jelöletlen",
     "keep": "Megtartás",
-    "maybe": "Talán",
     "reject": "Elvetés",
     "currentFolder": "Aktuális mappa állapota",
     "keepCurrentFolder": "Aktuális mappa megtartása",
-    "maybeCurrentFolder": "Aktuális mappa megjelölése Talánként",
     "rejectCurrentFolder": "Aktuális mappa elvetése",
     "deleteRejects": "Elvetett elemek törlése ({count})",
     "clear": "Jelölés törlése",
     "keepShortcut": "Megtartás (K)",
-    "maybeShortcut": "Talán (2)",
     "rejectShortcut": "Elvetés (X)",
-    "clearShortcut": "Jelölés törlése (0)"
+    "clearShortcut": "Jelölés törlése (0)",
+    "filter": "Átvizsgálási állapot"
   },
   "errors": {
     "forbidden": "Nincs jogosultsága a hozzáféréshez.",

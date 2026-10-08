@@ -38,18 +38,16 @@
     "all": "Все",
     "unmarked": "Без метки",
     "keep": "Оставить",
-    "maybe": "Возможно",
     "reject": "Исключить",
     "currentFolder": "Статус текущей папки",
     "keepCurrentFolder": "Оставить текущую папку",
-    "maybeCurrentFolder": "Пометить текущую папку как «Возможно»",
     "rejectCurrentFolder": "Исключить текущую папку",
     "deleteRejects": "Удалить исключённые элементы ({count})",
     "clear": "Снять метку",
     "keepShortcut": "Оставить (K)",
-    "maybeShortcut": "Возможно (2)",
     "rejectShortcut": "Исключить (X)",
-    "clearShortcut": "Снять метку (0)"
+    "clearShortcut": "Снять метку (0)",
+    "filter": "Статус отбора"
   },
   "errors": {
     "forbidden": "У вас нет прав доступа к этому.",

@@ -38,18 +38,16 @@
     "all": "الكل",
     "unmarked": "غير معلّم",
     "keep": "احتفاظ",
-    "maybe": "ربما",
     "reject": "استبعاد",
     "currentFolder": "حالة مراجعة المجلد الحالي",
     "keepCurrentFolder": "الاحتفاظ بالمجلد الحالي",
-    "maybeCurrentFolder": "وضع المجلد الحالي كـ «ربما»",
     "rejectCurrentFolder": "استبعاد المجلد الحالي",
     "deleteRejects": "حذف العناصر المستبعدة ({count})",
     "clear": "مسح العلامة",
     "keepShortcut": "احتفاظ (K)",
-    "maybeShortcut": "ربما (2)",
     "rejectShortcut": "استبعاد (X)",
-    "clearShortcut": "مسح العلامة (0)"
+    "clearShortcut": "مسح العلامة (0)",
+    "filter": "حالة المراجعة"
   },
   "errors": {
     "forbidden": "You don't have permissions to access this.",

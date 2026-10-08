@@ -129,7 +129,7 @@ describe('adjustedData', () => {
 
     expect(result.triageItems).toBeUndefined();
     expect(result.items.find((item) => item.name === "keep.mp4").triageStatus).toBe("keep");
-    expect(result.items.find((item) => item.name === "maybe").triageStatus).toBe("maybe");
+    expect(result.items.find((item) => item.name === "maybe")).not.toHaveProperty("triageStatus");
     expect(result.items.find((item) => item.name === "reject.jpg").triageStatus).toBe("reject");
     expect(result.items.find((item) => item.name === "unmarked")).not.toHaveProperty("triageStatus");
   });

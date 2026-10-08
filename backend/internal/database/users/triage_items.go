@@ -5,7 +5,6 @@ import "strings"
 const (
 	TriageStatusKeep   = "keep"
 	TriageStatusReject = "reject"
-	TriageStatusMaybe  = "maybe"
 )
 
 // TriageItems stores a per-user review state for files and folders.
@@ -19,7 +18,7 @@ func NormalizeTriageStatus(status string) (string, bool) {
 	switch status {
 	case "", "none", "unmarked":
 		return "", true
-	case TriageStatusKeep, TriageStatusReject, TriageStatusMaybe:
+	case TriageStatusKeep, TriageStatusReject:
 		return status, true
 	default:
 		return "", false
@@ -81,7 +80,13 @@ func (u *User) TriageItemsForDirectory(sourcePath, indexDirPath string) map[stri
 	}
 	out := make(map[string]string, len(byName))
 	for name, status := range byName {
+		if status != TriageStatusKeep && status != TriageStatusReject {
+			continue
+		}
 		out[name] = status
+	}
+	if len(out) == 0 {
+		return nil
 	}
 	return out
 }
@@ -91,7 +96,11 @@ func (u *User) TriageStatusForItem(sourcePath, indexDirPath, name string) string
 	if u == nil || len(u.TriageItems) == 0 {
 		return ""
 	}
-	return u.TriageItems[sourcePath][indexDirPath][name]
+	status := u.TriageItems[sourcePath][indexDirPath][name]
+	if status != TriageStatusKeep && status != TriageStatusReject {
+		return ""
+	}
+	return status
 }
 
 // EnsureTriageItems returns a non-nil map for mutation.

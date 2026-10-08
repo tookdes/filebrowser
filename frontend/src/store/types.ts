@@ -39,7 +39,7 @@ export interface ReqObject {
   onlyOfficeId?: string;
   hasUpdate?: boolean;
   metadata?: unknown;
-  triageStatus?: "" | "keep" | "maybe" | "reject";
+  triageStatus?: "" | "keep" | "reject";
 
   // Directory listing properties
   listing?: FileListItem[];

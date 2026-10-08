@@ -38,18 +38,16 @@
     "all": "Toate",
     "unmarked": "Nemarcate",
     "keep": "Păstrează",
-    "maybe": "Poate",
     "reject": "Respinge",
     "currentFolder": "Starea dosarului curent",
     "keepCurrentFolder": "Păstrează dosarul curent",
-    "maybeCurrentFolder": "Marchează dosarul curent ca Poate",
     "rejectCurrentFolder": "Respinge dosarul curent",
     "deleteRejects": "Șterge elementele respinse ({count})",
     "clear": "Șterge marcajul",
     "keepShortcut": "Păstrează (K)",
-    "maybeShortcut": "Poate (2)",
     "rejectShortcut": "Respinge (X)",
-    "clearShortcut": "Șterge marcajul (0)"
+    "clearShortcut": "Șterge marcajul (0)",
+    "filter": "Stare de triere"
   },
   "errors": {
     "forbidden": "Nu ai permisiuni sa accesezi asta.",

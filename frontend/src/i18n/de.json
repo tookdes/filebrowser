@@ -38,18 +38,16 @@
     "all": "Alle",
     "unmarked": "Unmarkiert",
     "keep": "Behalten",
-    "maybe": "Vielleicht",
     "reject": "Verwerfen",
     "currentFolder": "Prüfstatus des aktuellen Ordners",
     "keepCurrentFolder": "Aktuellen Ordner behalten",
-    "maybeCurrentFolder": "Aktuellen Ordner als Vielleicht markieren",
     "rejectCurrentFolder": "Aktuellen Ordner verwerfen",
     "deleteRejects": "Verworfene Elemente löschen ({count})",
     "clear": "Markierung entfernen",
     "keepShortcut": "Behalten (K)",
-    "maybeShortcut": "Vielleicht (2)",
     "rejectShortcut": "Verwerfen (X)",
-    "clearShortcut": "Markierung entfernen (0)"
+    "clearShortcut": "Markierung entfernen (0)",
+    "filter": "Prüfstatus"
   },
   "errors": {
     "forbidden": "Sie haben keine Berechtigung dies abzurufen.",

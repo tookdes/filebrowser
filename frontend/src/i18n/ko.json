@@ -38,18 +38,16 @@
     "all": "전체",
     "unmarked": "미표시",
     "keep": "유지",
-    "maybe": "보류",
     "reject": "제외",
     "currentFolder": "현재 폴더 검토 상태",
     "keepCurrentFolder": "현재 폴더 유지",
-    "maybeCurrentFolder": "현재 폴더를 보류로 표시",
     "rejectCurrentFolder": "현재 폴더 제외",
     "deleteRejects": "제외 항목 삭제 ({count})",
     "clear": "표시 지우기",
     "keepShortcut": "유지 (K)",
-    "maybeShortcut": "보류 (2)",
     "rejectShortcut": "제외 (X)",
-    "clearShortcut": "표시 지우기 (0)"
+    "clearShortcut": "표시 지우기 (0)",
+    "filter": "검토 상태"
   },
   "errors": {
     "forbidden": "접근 권한이 없습니다.",

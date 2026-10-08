@@ -184,7 +184,7 @@ export async function patchPinnedItem({ source, path, name, action = 'add' }) {
   })
 }
 
-// PATCH /api/users/triage-items (keep, reject, maybe, or empty to clear)
+// PATCH /api/users/triage-items (keep, reject, or empty to clear)
 export async function patchTriageItem({ source, path, name, status = '' }) {
   const apiPath = getApiPath('users/triage-items')
   await fetchURL(apiPath, {

@@ -38,18 +38,16 @@
     "all": "全部",
     "unmarked": "未标记",
     "keep": "保留",
-    "maybe": "待定",
     "reject": "淘汰",
     "currentFolder": "当前文件夹标记",
     "keepCurrentFolder": "保留当前文件夹",
-    "maybeCurrentFolder": "将当前文件夹标为待定",
     "rejectCurrentFolder": "淘汰当前文件夹",
     "deleteRejects": "删除淘汰项（{count}）",
     "clear": "清除标记",
     "keepShortcut": "保留 (K)",
-    "maybeShortcut": "待定 (2)",
     "rejectShortcut": "淘汰 (X)",
-    "clearShortcut": "清除标记 (0)"
+    "clearShortcut": "清除标记 (0)",
+    "filter": "筛选标记"
   },
   "errors": {
     "forbidden": "你无权限访问",

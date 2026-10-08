@@ -676,7 +676,7 @@ export const mutations = {
       mutations.resetSelected();
 
       const triageFilter = state.listing.triageFilter || "all";
-      const triageFiltered = ["unmarked", "keep", "maybe", "reject"].includes(triageFilter);
+      const triageFiltered = ["unmarked", "keep", "reject"].includes(triageFilter);
       const indices = triageFiltered
         ? (state.listing.triageVisibleIndices || [])
         : state.req.items.map((_item, index) => index);

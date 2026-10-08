@@ -83,8 +83,9 @@ export function adjustedData(data) {
         item.isShared = false;
       }
       item.pinned = pinnedNames.has(item.name);
-      if (triageItems[item.name]) {
-        item.triageStatus = triageItems[item.name];
+      const triageStatus = triageItems[item.name];
+      if (triageStatus === "keep" || triageStatus === "reject") {
+        item.triageStatus = triageStatus;
       }
       if (data.path === "/") {
         if (item.type === "directory") {

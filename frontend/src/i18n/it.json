@@ -211,18 +211,16 @@
     "all": "Tutti",
     "unmarked": "Non contrassegnati",
     "keep": "Conserva",
-    "maybe": "Forse",
     "reject": "Scarta",
     "currentFolder": "Stato della cartella corrente",
     "keepCurrentFolder": "Conserva cartella corrente",
-    "maybeCurrentFolder": "Segna cartella corrente come Forse",
     "rejectCurrentFolder": "Scarta cartella corrente",
     "deleteRejects": "Elimina elementi scartati ({count})",
     "clear": "Rimuovi contrassegno",
     "keepShortcut": "Conserva (K)",
-    "maybeShortcut": "Forse (2)",
     "rejectShortcut": "Scarta (X)",
-    "clearShortcut": "Rimuovi contrassegno (0)"
+    "clearShortcut": "Rimuovi contrassegno (0)",
+    "filter": "Stato di selezione"
   },
   "errors": {
     "forbidden": "Non hai i permessi per accedere a questa risorsa.",

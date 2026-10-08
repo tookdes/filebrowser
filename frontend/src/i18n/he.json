@@ -38,18 +38,16 @@
     "all": "הכול",
     "unmarked": "לא מסומן",
     "keep": "שמור",
-    "maybe": "אולי",
     "reject": "דחה",
     "currentFolder": "סטטוס התיקייה הנוכחית",
     "keepCurrentFolder": "שמור את התיקייה הנוכחית",
-    "maybeCurrentFolder": "סמן את התיקייה הנוכחית כאולי",
     "rejectCurrentFolder": "דחה את התיקייה הנוכחית",
     "deleteRejects": "מחק פריטים שנדחו ({count})",
     "clear": "נקה סימון",
     "keepShortcut": "שמור (K)",
-    "maybeShortcut": "אולי (2)",
     "rejectShortcut": "דחה (X)",
-    "clearShortcut": "נקה סימון (0)"
+    "clearShortcut": "נקה סימון (0)",
+    "filter": "סטטוס מיון"
   },
   "errors": {
     "forbidden": "אין לך הרשאות גישה",

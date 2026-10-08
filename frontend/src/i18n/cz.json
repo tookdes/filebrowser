@@ -38,18 +38,16 @@
     "all": "Vše",
     "unmarked": "Neoznačené",
     "keep": "Zachovat",
-    "maybe": "Možná",
     "reject": "Vyřadit",
     "currentFolder": "Stav aktuální složky",
     "keepCurrentFolder": "Zachovat aktuální složku",
-    "maybeCurrentFolder": "Označit aktuální složku jako Možná",
     "rejectCurrentFolder": "Vyřadit aktuální složku",
     "deleteRejects": "Smazat vyřazené položky ({count})",
     "clear": "Zrušit označení",
     "keepShortcut": "Zachovat (K)",
-    "maybeShortcut": "Možná (2)",
     "rejectShortcut": "Vyřadit (X)",
-    "clearShortcut": "Zrušit označení (0)"
+    "clearShortcut": "Zrušit označení (0)",
+    "filter": "Stav třídění"
   },
   "errors": {
     "forbidden": "Nemáte oprávnění k přístupu.",

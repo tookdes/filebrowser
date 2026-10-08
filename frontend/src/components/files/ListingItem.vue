@@ -89,14 +89,6 @@
       ><i class="material-symbols">check_circle</i></button>
       <button
         type="button"
-        class="triage-button triage-button--maybe"
-        :class="{ active: triageStatus === 'maybe' }"
-        :aria-label="$t('triage.maybe')"
-        :title="$t('triage.maybe')"
-        @click.stop.prevent="emitTriage('maybe')"
-      ><i class="material-symbols">help</i></button>
-      <button
-        type="button"
         class="triage-button triage-button--reject"
         :class="{ active: triageStatus === 'reject' }"
         :aria-label="$t('triage.reject')"
@@ -198,14 +190,6 @@
         :title="$t('triage.keep')"
         @click.stop.prevent="emitTriage('keep')"
       ><i class="material-symbols">check_circle</i></button>
-      <button
-        type="button"
-        class="triage-button triage-button--maybe"
-        :class="{ active: triageStatus === 'maybe' }"
-        :aria-label="$t('triage.maybe')"
-        :title="$t('triage.maybe')"
-        @click.stop.prevent="emitTriage('maybe')"
-      ><i class="material-symbols">help</i></button>
       <button
         type="button"
         class="triage-button triage-button--reject"
@@ -948,35 +932,44 @@ export default {
 .triage-controls {
   position: absolute;
   z-index: 20;
-  right: 0.45em;
-  bottom: 0.45em;
+  right: 0.32em;
+  top: 50%;
+  transform: translateY(-50%);
   display: flex;
-  gap: 0.25em;
-  padding: 0.2em;
-  border-radius: 999px;
-  background: color-mix(in srgb, var(--background) 82%, transparent);
-  box-shadow: 0 1px 5px rgb(0 0 0 / 25%);
+  flex-direction: column;
+  gap: 0.16em;
+  padding: 0;
+  background: transparent;
+  box-shadow: none;
 }
 
 .triage-button {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 2.15em;
-  height: 2.15em;
-  min-width: 2.15em;
-  min-height: 2.15em;
+  width: 1.9em;
+  height: 1.9em;
+  min-width: 1.9em;
+  min-height: 1.9em;
   padding: 0;
   border: 0;
   border-radius: 50%;
   color: var(--textSecondary);
-  background: transparent;
+  background: color-mix(in srgb, var(--background) 86%, transparent);
+  box-shadow: 0 1px 3px rgb(0 0 0 / 22%);
   cursor: pointer;
   touch-action: manipulation;
+  opacity: 0.86;
+}
+
+.triage-button:hover,
+.triage-button:focus-visible,
+.triage-button.active {
+  opacity: 1;
 }
 
 .triage-button .material-symbols {
-  font-size: 1.25em !important;
+  font-size: 1.12em !important;
   margin: 0 !important;
 }
 
@@ -991,26 +984,35 @@ export default {
   background: color-mix(in srgb, var(--red) 18%, var(--background));
 }
 
-.triage-button--maybe.active {
-  color: var(--icon-orange);
-  background: color-mix(in srgb, var(--icon-orange) 18%, var(--background));
-}
-
 .listing-items.list .triage-controls,
 .listing-items.compact .triage-controls {
   position: static;
+  transform: none;
+  flex-direction: row;
   flex-shrink: 0;
-  margin-left: 0.4em;
-  background: transparent;
+  margin-left: auto;
+  gap: 0.08em;
+  padding: 0.08em;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--background) 90%, transparent);
+  box-shadow: 0 1px 3px rgb(0 0 0 / 12%);
+}
+
+.listing-items.list .triage-button,
+.listing-items.compact .triage-button {
+  width: 1.85em;
+  height: 1.85em;
+  min-width: 1.85em;
+  min-height: 1.85em;
   box-shadow: none;
 }
 
 @media (pointer: coarse) {
   .triage-button {
-    width: 2.65em;
-    height: 2.65em;
-    min-width: 2.65em;
-    min-height: 2.65em;
+    width: 2.15em;
+    height: 2.15em;
+    min-width: 2.15em;
+    min-height: 2.15em;
   }
 }
 

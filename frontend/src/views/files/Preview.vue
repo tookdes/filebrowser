@@ -11,11 +11,6 @@
         :aria-label="$t('triage.keep')" @click="setTriageStatus('keep')">
         <i class="material-symbols">check_circle</i>
       </button>
-      <button type="button" class="triage-preview-button triage-preview-button--maybe"
-        :class="{ active: triageStatus === 'maybe' }" :title="$t('triage.maybeShortcut')"
-        :aria-label="$t('triage.maybe')" @click="setTriageStatus('maybe')">
-        <i class="material-symbols">help</i>
-      </button>
       <button type="button" class="triage-preview-button triage-preview-button--reject"
         :class="{ active: triageStatus === 'reject' }" :title="$t('triage.rejectShortcut')"
         :aria-label="$t('triage.reject')" @click="setTriageStatus('reject')">
@@ -593,10 +588,6 @@ export default {
             event.preventDefault();
             await this.setTriageStatus("keep");
             return;
-          case "2":
-            event.preventDefault();
-            await this.setTriageStatus("maybe");
-            return;
           case "x":
             event.preventDefault();
             await this.setTriageStatus("reject");
@@ -921,10 +912,6 @@ export default {
   background: color-mix(in srgb, var(--red) 18%, var(--background));
 }
 
-.triage-preview-button--maybe.active {
-  color: var(--icon-orange);
-  background: color-mix(in srgb, var(--icon-orange) 18%, var(--background));
-}
 
 @media (pointer: coarse) {
   .triage-preview-button {

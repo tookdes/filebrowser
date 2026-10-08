@@ -15,7 +15,7 @@ type triageItemPatchRequest struct {
 	Source string `json:"source" validate:"required"`
 	Path   string `json:"path" validate:"required"` // scope-relative parent directory
 	Name   string `json:"name" validate:"required"` // item basename within path
-	Status string `json:"status"`                    // keep, reject, maybe, or empty to clear
+	Status string `json:"status"`                    // keep, reject, or empty to clear
 }
 
 // userPatchTriageItemsHandler sets or clears the per-user review state of one file or folder.
@@ -32,7 +32,7 @@ func userPatchTriageItemsHandler(w http.ResponseWriter, r *http.Request, d *Cont
 
 	status, ok := users.NormalizeTriageStatus(body.Status)
 	if !ok {
-		return http.StatusBadRequest, fmt.Errorf("status must be keep, reject, maybe, or empty")
+		return http.StatusBadRequest, fmt.Errorf("status must be keep, reject, or empty")
 	}
 
 	cleanPath, err := utils.SanitizePath(body.Path)

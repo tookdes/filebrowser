@@ -38,18 +38,16 @@
     "all": "Wszystkie",
     "unmarked": "Nieoznaczone",
     "keep": "Zachowaj",
-    "maybe": "Może",
     "reject": "Odrzuć",
     "currentFolder": "Status bieżącego folderu",
     "keepCurrentFolder": "Zachowaj bieżący folder",
-    "maybeCurrentFolder": "Oznacz bieżący folder jako Może",
     "rejectCurrentFolder": "Odrzuć bieżący folder",
     "deleteRejects": "Usuń odrzucone elementy ({count})",
     "clear": "Wyczyść oznaczenie",
     "keepShortcut": "Zachowaj (K)",
-    "maybeShortcut": "Może (2)",
     "rejectShortcut": "Odrzuć (X)",
-    "clearShortcut": "Wyczyść oznaczenie (0)"
+    "clearShortcut": "Wyczyść oznaczenie (0)",
+    "filter": "Status selekcji"
   },
   "errors": {
     "forbidden": "Nie posiadasz uprawnień potrzebnych, by uzyskać do tego dostęp.",

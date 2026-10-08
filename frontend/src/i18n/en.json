@@ -211,18 +211,16 @@
     "all": "All",
     "unmarked": "Unmarked",
     "keep": "Keep",
-    "maybe": "Maybe",
     "reject": "Reject",
     "currentFolder": "Current folder review status",
     "keepCurrentFolder": "Keep current folder",
-    "maybeCurrentFolder": "Mark current folder as Maybe",
     "rejectCurrentFolder": "Reject current folder",
     "deleteRejects": "Delete rejected items ({count})",
     "clear": "Clear mark",
     "keepShortcut": "Keep (K)",
-    "maybeShortcut": "Maybe (2)",
     "rejectShortcut": "Reject (X)",
-    "clearShortcut": "Clear mark (0)"
+    "clearShortcut": "Clear mark (0)",
+    "filter": "Review status"
   },
   "errors": {
     "forbidden": "You don't have permissions to access this.",
