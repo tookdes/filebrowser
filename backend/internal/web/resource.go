@@ -174,6 +174,7 @@ func resourceGetHandler(w http.ResponseWriter, r *http.Request, d *Context) (int
 		SkipExtendedAttrs:        skipExtendedAttrs,
 		ShowSharedAttr:           true,
 		ShowPinnedItems:          true,
+		ShowTriageItems:          true,
 	}, d.User)
 	if err != nil {
 		return ErrToStatus(err), err
