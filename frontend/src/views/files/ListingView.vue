@@ -33,6 +33,39 @@
         </div>
       </div>
 
+      <div
+        v-if="showTriageControls && totalUnfilteredItems > 0"
+        class="triage-filter-bar"
+        role="toolbar"
+        aria-label="Triage filter"
+      >
+        <button type="button" class="button button--flat triage-filter-button"
+          :class="{ active: triageFilter === 'all' }" title="All"
+          @click="triageFilter = 'all'">
+          <i class="material-symbols">filter_alt_off</i>
+        </button>
+        <button type="button" class="button button--flat triage-filter-button"
+          :class="{ active: triageFilter === 'unmarked' }" title="Unmarked"
+          @click="triageFilter = 'unmarked'">
+          <i class="material-symbols">radio_button_unchecked</i>
+        </button>
+        <button type="button" class="button button--flat triage-filter-button triage-filter-button--keep"
+          :class="{ active: triageFilter === 'keep' }" title="Keep"
+          @click="triageFilter = 'keep'">
+          <i class="material-symbols">star</i>
+        </button>
+        <button type="button" class="button button--flat triage-filter-button triage-filter-button--maybe"
+          :class="{ active: triageFilter === 'maybe' }" title="Maybe"
+          @click="triageFilter = 'maybe'">
+          <i class="material-symbols">help</i>
+        </button>
+        <button type="button" class="button button--flat triage-filter-button triage-filter-button--reject"
+          :class="{ active: triageFilter === 'reject' }" title="Reject"
+          @click="triageFilter = 'reject'">
+          <i class="material-symbols">close</i>
+        </button>
+      </div>
+
       <!-- Empty state -->
       <template v-if="numDirs + numFiles + numPinned === 0">
         <h2 class="message font-size-large">
@@ -86,7 +119,10 @@
             v-bind:hasDuration="hasDuration"
             v-bind:isShared="item.isShared"
             v-bind:pinned="item.pinned"
+            v-bind:triageStatus="item.triageStatus"
+            v-bind:triageEnabled="showTriageControls"
             v-bind:viewToken="item.viewToken"
+            @triage="(status) => setTriageStatus(item, status)"
           />
         </div>
 
@@ -118,7 +154,10 @@
             v-bind:hasDuration="hasDuration"
             v-bind:isShared="item.isShared"
             v-bind:pinned="item.pinned"
+            v-bind:triageStatus="item.triageStatus"
+            v-bind:triageEnabled="showTriageControls"
             v-bind:viewToken="item.viewToken"
+            @triage="(status) => setTriageStatus(item, status)"
           />
         </div>
 
@@ -151,7 +190,10 @@
             v-bind:hasDuration="hasDuration"
             v-bind:isShared="item.isShared"
             v-bind:pinned="item.pinned"
+            v-bind:triageStatus="item.triageStatus"
+            v-bind:triageEnabled="showTriageControls"
             v-bind:viewToken="item.viewToken"
+            @triage="(status) => setTriageStatus(item, status)"
           />
         </div>
 
@@ -183,7 +225,7 @@
 
 <script>
 import downloadFiles from "@/utils/download";
-import { resourcesApi } from "@/api";
+import { resourcesApi, usersApi } from "@/api";
 import { router } from "@/router";
 import { readAllDirectoryEntries, checkConflict } from "@/utils/upload";
 import throttle from "@/utils/throttle";
@@ -198,6 +240,7 @@ import {
   resetTypeAheadSession,
 } from "@/utils/listingTypeAhead.js";
 import { notifyMoveCopyFailure } from "@/utils/appNotifications";
+import { notify } from "@/notify";
 
 export default {
   name: "listingView",
@@ -224,6 +267,7 @@ export default {
       selectionUpdatePending: false,
       isResizing: false,
       resizeTimeout: null,
+      triageFilter: "all",
     };
   },
   watch: {
@@ -346,8 +390,28 @@ export default {
         file => file.type !== "directory" && file.metadata?.duration
       );
     },
+    showTriageControls() {
+      return getters.isLoggedIn() && !getters.isShare();
+    },
+    totalUnfilteredItems() {
+      return Array.isArray(state.req?.items) ? state.req.items.length : 0;
+    },
     items() {
-      return getters.reqItems();
+      const groups = getters.reqItems();
+      if (this.triageFilter === "all") {
+        return groups;
+      }
+      const matches = (item) => {
+        const status = item?.triageStatus || "";
+        return this.triageFilter === "unmarked"
+          ? status === ""
+          : status === this.triageFilter;
+      };
+      return {
+        pinned: (groups.pinned || []).filter(matches),
+        dirs: (groups.dirs || []).filter(matches),
+        files: (groups.files || []).filter(matches),
+      };
     },
     numPinned() {
       return this.pinnedItems.length;
@@ -557,6 +621,23 @@ export default {
     }
   },
   methods: {
+    async setTriageStatus(item, requestedStatus) {
+      if (!this.showTriageControls || !item?.name) return;
+      const nextStatus = item.triageStatus === requestedStatus ? "" : requestedStatus;
+      const source = item.source || state.req?.source || state.sources.current;
+      const directoryPath = state.req?.path || "/";
+      try {
+        await usersApi.patchTriageItem({
+          source,
+          path: directoryPath,
+          name: item.name,
+          status: nextStatus,
+        });
+        item.triageStatus = nextStatus;
+      } catch (error) {
+        notify.showError(error);
+      }
+    },
     handleGlobalDragEnd() {
       // Reset drag state for all items (replaces per-item dragend listeners)
       const items = this.$el?.querySelectorAll('.listing-item.drag-hover, .listing-item.half-selected');
@@ -1433,6 +1514,52 @@ export default {
 .listing-items {
   position: relative;
   flex: 1;
+}
+
+.triage-filter-bar {
+  position: sticky;
+  top: 0;
+  z-index: 25;
+  display: flex;
+  justify-content: center;
+  gap: 0.35em;
+  width: fit-content;
+  margin: 0 auto 0.6em;
+  padding: 0.3em;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--background) 92%, transparent);
+  box-shadow: 0 1px 7px rgb(0 0 0 / 18%);
+  backdrop-filter: blur(8px);
+}
+
+.triage-filter-button {
+  width: 2.4em;
+  height: 2.4em;
+  min-width: 2.4em;
+  padding: 0;
+  border-radius: 50%;
+  color: var(--textSecondary);
+}
+
+.triage-filter-button.active {
+  color: var(--primaryColor);
+  background: color-mix(in srgb, var(--primaryColor) 18%, var(--background));
+}
+
+.triage-filter-button--reject.active {
+  color: var(--red);
+}
+
+.triage-filter-button--maybe.active {
+  color: var(--orange);
+}
+
+@media (pointer: coarse) {
+  .triage-filter-button {
+    width: 2.8em;
+    height: 2.8em;
+    min-width: 2.8em;
+  }
 }
 
 .listing-item .pinned-indicator {
