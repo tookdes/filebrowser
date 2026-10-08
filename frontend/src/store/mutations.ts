@@ -1047,7 +1047,7 @@ export const mutations = {
 
     const newPathLevel = { ...pathLevel, ...payload };
     const newSourceLevel = setObjectProperty(sourceLevel, path, newPathLevel);
-    prefs = setObjectProperty(prefs, source, newSourceLevel);
+    prefs = setObjectProperty(prefs, source, newSourceLevel) as DisplayPreferences;
     state.displayPreferences = prefs;
 
     const isAnonymous = state.user.username === 'anonymous';

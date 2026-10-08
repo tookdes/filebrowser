@@ -96,7 +96,6 @@ export interface DisplayPreference {
     by: string;
     asc: boolean;
   };
-  displayPreferences?: DisplayPreferences;
 }
 
 export type DisplayPreferences = Record<string, Record<string, DisplayPreference>>;
@@ -231,6 +230,7 @@ export interface UserObject {
     by: string;
     asc: boolean;
   };
+  displayPreferences?: DisplayPreferences;
   dateFormat?: boolean;
   perm?: unknown;
   email?: string;
