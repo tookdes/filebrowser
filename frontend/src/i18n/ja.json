@@ -33,6 +33,24 @@
     "sendToApp": "アプリに送信",
     "refresh": "更新"
   },
+  "triage": {
+    "toolbar": "選別ステータス",
+    "all": "すべて",
+    "unmarked": "未マーク",
+    "keep": "残す",
+    "maybe": "保留",
+    "reject": "除外",
+    "currentFolder": "現在のフォルダーの選別状態",
+    "keepCurrentFolder": "現在のフォルダーを残す",
+    "maybeCurrentFolder": "現在のフォルダーを保留にする",
+    "rejectCurrentFolder": "現在のフォルダーを除外する",
+    "deleteRejects": "除外した項目を削除 ({count})",
+    "clear": "マークを解除",
+    "keepShortcut": "残す (K)",
+    "maybeShortcut": "保留 (2)",
+    "rejectShortcut": "除外 (X)",
+    "clearShortcut": "マークを解除 (0)"
+  },
   "errors": {
     "forbidden": "このリソースへのアクセス権限がありません。",
     "internal": "内部エラーが発生しました。",
