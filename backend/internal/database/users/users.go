@@ -208,6 +208,7 @@ type User struct {
 	TOTPNonce                string                           `json:"totpNonce,omitempty"`
 	PasskeyCredentials       []WebAuthnCredential             `json:"passkeyCredentials,omitempty"`
 	PinnedItems              PinnedItems                      `json:"pinnedItems,omitempty"`
+	TriageItems              TriageItems                      `json:"triageItems,omitempty"`
 	Version                  int                              `json:"version"`
 	UserLegacyFields         `json:",inline"`
 }
