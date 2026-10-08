@@ -8,6 +8,11 @@ on:
       - "beta/v*.*.*"
       - "stable/v*.*.*"
       - "staging/v*.*.*"
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
 jobs:
   prime_docker_cache:
     name: Prime docker cache
