@@ -12,7 +12,7 @@
         <i class="material-symbols">check_circle</i>
       </button>
       <button type="button" class="triage-preview-button triage-preview-button--maybe"
-        :class="{ active: triageStatus === 'maybe' }" title="Maybe (M)"
+        :class="{ active: triageStatus === 'maybe' }" title="Maybe (2)"
         aria-label="Maybe" @click="setTriageStatus('maybe')">
         <i class="material-symbols">help</i>
       </button>
@@ -593,7 +593,7 @@ export default {
             event.preventDefault();
             await this.setTriageStatus("keep");
             return;
-          case "m":
+          case "2":
             event.preventDefault();
             await this.setTriageStatus("maybe");
             return;
