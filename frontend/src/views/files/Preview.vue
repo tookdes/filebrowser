@@ -4,25 +4,25 @@
       v-if="showTriageControls && !isDeleted"
       class="triage-preview-controls"
       role="toolbar"
-      aria-label="Triage"
+      :aria-label="$t('triage.toolbar')"
     >
       <button type="button" class="triage-preview-button triage-preview-button--keep"
-        :class="{ active: triageStatus === 'keep' }" title="Keep (K)"
-        aria-label="Keep" @click="setTriageStatus('keep')">
+        :class="{ active: triageStatus === 'keep' }" :title="$t('triage.keepShortcut')"
+        :aria-label="$t('triage.keep')" @click="setTriageStatus('keep')">
         <i class="material-symbols">check_circle</i>
       </button>
       <button type="button" class="triage-preview-button triage-preview-button--maybe"
-        :class="{ active: triageStatus === 'maybe' }" title="Maybe (2)"
-        aria-label="Maybe" @click="setTriageStatus('maybe')">
+        :class="{ active: triageStatus === 'maybe' }" :title="$t('triage.maybeShortcut')"
+        :aria-label="$t('triage.maybe')" @click="setTriageStatus('maybe')">
         <i class="material-symbols">help</i>
       </button>
       <button type="button" class="triage-preview-button triage-preview-button--reject"
-        :class="{ active: triageStatus === 'reject' }" title="Reject (X)"
-        aria-label="Reject" @click="setTriageStatus('reject')">
+        :class="{ active: triageStatus === 'reject' }" :title="$t('triage.rejectShortcut')"
+        :aria-label="$t('triage.reject')" @click="setTriageStatus('reject')">
         <i class="material-symbols">close</i>
       </button>
       <button v-if="triageStatus" type="button" class="triage-preview-button"
-        title="Clear mark (0)" aria-label="Clear mark" @click="setTriageStatus('')">
+        :title="$t('triage.clearShortcut')" :aria-label="$t('triage.clear')" @click="setTriageStatus('')">
         <i class="material-symbols">restart</i>
       </button>
     </div>
