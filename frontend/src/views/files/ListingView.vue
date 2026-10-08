@@ -295,6 +295,16 @@ export default {
     };
   },
   watch: {
+    triageFilter() {
+      mutations.resetSelected();
+      this.$nextTick(this.syncTriageListingState);
+    },
+    items: {
+      deep: true,
+      handler() {
+        this.$nextTick(this.syncTriageListingState);
+      },
+    },
     gallerySize() {
       this.columnWidth = 250 + state.user.gallerySize * 50;
     },
@@ -611,6 +621,11 @@ export default {
   },
   beforeUnmount() {
     resetTypeAheadSession();
+    mutations.updateListing({
+      ...state.listing,
+      triageFilter: "all",
+      triageVisibleIndices: [],
+    });
 
     if (this.resizeTimeout) {
       clearTimeout(this.resizeTimeout);
@@ -648,6 +663,21 @@ export default {
     }
   },
   methods: {
+    syncTriageListingState() {
+      const indices = this.allItems
+        .map((item) => item?.index)
+        .filter((index) => Number.isInteger(index));
+      const sameFilter = state.listing.triageFilter === this.triageFilter;
+      const sameIndices =
+        state.listing.triageVisibleIndices.length === indices.length &&
+        state.listing.triageVisibleIndices.every((value, index) => value === indices[index]);
+      if (sameFilter && sameIndices) return;
+      mutations.updateListing({
+        ...state.listing,
+        triageFilter: this.triageFilter,
+        triageVisibleIndices: indices,
+      });
+    },
     async setCurrentFolderTriageStatus(requestedStatus) {
       if (!this.showTriageControls || !state.req?.path || state.req.path === "/") return;
       const normalizedPath = state.req.path.replace(/\/+$/, "");
