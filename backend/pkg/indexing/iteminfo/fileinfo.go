@@ -65,7 +65,7 @@ type ExtendedFileInfo struct {
 	Hash         string                `json:"hash,omitempty"`         // hash for the file -- used for sharing
 	RealPath     string                `json:"-"`
 	PinnedItems  []string              `json:"pinnedItems,omitempty"` // pinned item names in this directory listing
-	TriageItems map[string]string     `json:"triageItems,omitempty"` // triage status by item name for directory listings
-	TriageStatus string               `json:"triageStatus,omitempty"` // triage status for a single file/folder
+	TriageItems map[string]string     `json:"triageItems,omitempty" swaggerignore:"true"` // triage status by item name for directory listings
+	TriageStatus string               `json:"triageStatus,omitempty" swaggerignore:"true"` // triage status for a single file/folder
 	ViewToken    string                `json:"viewToken,omitempty"`   // opaque token for inline viewing via /resources/view or /media/stream
 }
