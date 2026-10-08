@@ -297,12 +297,12 @@ export default {
   watch: {
     triageFilter() {
       mutations.resetSelected();
-      this.$nextTick(this.syncTriageListingState);
+      this.syncTriageListingState();
     },
     items: {
       deep: true,
       handler() {
-        this.$nextTick(this.syncTriageListingState);
+        this.syncTriageListingState();
       },
     },
     gallerySize() {
