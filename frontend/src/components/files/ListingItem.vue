@@ -71,6 +71,38 @@
     <div v-if="isPinned && !isListMode && !inlinePin" class="pin-icon-wrapper">
       <i class="material-symbols pinned-indicator">push_pin</i>
     </div>
+    <div
+      v-if="triageEnabled"
+      class="triage-controls"
+      :class="{ 'triage-controls--list': isListMode }"
+      @click.stop.prevent
+      @touchstart.stop
+    >
+      <button
+        type="button"
+        class="triage-button triage-button--keep"
+        :class="{ active: triageStatus === 'keep' }"
+        aria-label="Keep"
+        title="Keep (K)"
+        @click.stop.prevent="emitTriage('keep')"
+      ><i class="material-symbols">star</i></button>
+      <button
+        type="button"
+        class="triage-button triage-button--maybe"
+        :class="{ active: triageStatus === 'maybe' }"
+        aria-label="Maybe"
+        title="Maybe (M)"
+        @click.stop.prevent="emitTriage('maybe')"
+      ><i class="material-symbols">help</i></button>
+      <button
+        type="button"
+        class="triage-button triage-button--reject"
+        :class="{ active: triageStatus === 'reject' }"
+        aria-label="Reject"
+        title="Reject (X)"
+        @click.stop.prevent="emitTriage('reject')"
+      ><i class="material-symbols">close</i></button>
+    </div>
 
     <Icon
       @click.stop="downloadFile"
@@ -149,6 +181,38 @@
     <div v-if="isPinned && !isListMode && !inlinePin" class="pin-icon-wrapper">
       <i class="material-symbols pinned-indicator">push_pin</i>
     </div>
+    <div
+      v-if="triageEnabled"
+      class="triage-controls"
+      :class="{ 'triage-controls--list': isListMode }"
+      @click.stop.prevent
+      @touchstart.stop
+    >
+      <button
+        type="button"
+        class="triage-button triage-button--keep"
+        :class="{ active: triageStatus === 'keep' }"
+        aria-label="Keep"
+        title="Keep (K)"
+        @click.stop.prevent="emitTriage('keep')"
+      ><i class="material-symbols">star</i></button>
+      <button
+        type="button"
+        class="triage-button triage-button--maybe"
+        :class="{ active: triageStatus === 'maybe' }"
+        aria-label="Maybe"
+        title="Maybe (M)"
+        @click.stop.prevent="emitTriage('maybe')"
+      ><i class="material-symbols">help</i></button>
+      <button
+        type="button"
+        class="triage-button triage-button--reject"
+        :class="{ active: triageStatus === 'reject' }"
+        aria-label="Reject"
+        title="Reject (X)"
+        @click.stop.prevent="emitTriage('reject')"
+      ><i class="material-symbols">close</i></button>
+    </div>
   </div>
 </template>
 
@@ -173,6 +237,7 @@ export default {
   components: {
     Icon,
   },
+  emits: ['select', 'selectRange', 'triage'],
   data() {
     return {
       isThumbnailInView: false,
@@ -236,6 +301,14 @@ export default {
       default: false,
     },
     pinned: {
+      type: Boolean,
+      default: false,
+    },
+    triageStatus: {
+      type: String,
+      default: "",
+    },
+    triageEnabled: {
       type: Boolean,
       default: false,
     },
@@ -402,6 +475,9 @@ export default {
     // Note: dragend listener removed - handled by parent ListingView
   },
   methods: {
+    emitTriage(status) {
+      this.$emit('triage', status);
+    },
     /** @param {MouseEvent} event */
     downloadFile(event) {
       event.preventDefault();
@@ -865,6 +941,75 @@ export default {
 
 .listing-item.pinned-item {
   border-color: color-mix(in srgb, var(--primaryColor) 35%, transparent);
+}
+
+.triage-controls {
+  position: absolute;
+  z-index: 20;
+  top: 0.45em;
+  left: 0.45em;
+  display: flex;
+  gap: 0.25em;
+  padding: 0.2em;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--background) 82%, transparent);
+  box-shadow: 0 1px 5px rgb(0 0 0 / 25%);
+}
+
+.triage-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.15em;
+  height: 2.15em;
+  min-width: 2.15em;
+  min-height: 2.15em;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  color: var(--textSecondary);
+  background: transparent;
+  cursor: pointer;
+  touch-action: manipulation;
+}
+
+.triage-button .material-symbols {
+  font-size: 1.25em !important;
+  margin: 0 !important;
+}
+
+.triage-button.active {
+  color: var(--primaryColor);
+  background: color-mix(in srgb, var(--primaryColor) 18%, var(--background));
+  font-variation-settings: 'FILL' 1;
+}
+
+.triage-button--reject.active {
+  color: var(--red);
+  background: color-mix(in srgb, var(--red) 18%, var(--background));
+}
+
+.triage-button--maybe.active {
+  color: var(--orange);
+  background: color-mix(in srgb, var(--orange) 18%, var(--background));
+}
+
+.listing-items.list .triage-controls,
+.listing-items.compact .triage-controls {
+  position: static;
+  flex-shrink: 0;
+  margin-left: 0.4em;
+  background: transparent;
+  box-shadow: none;
+}
+
+@media (pointer: coarse) {
+  .triage-button {
+    width: 2.65em;
+    height: 2.65em;
+    min-width: 2.65em;
+    min-height: 2.65em;
+  }
 }
 
 /* Ensure items maintain their height while offscreen content is skipped */
