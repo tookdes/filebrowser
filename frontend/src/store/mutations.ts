@@ -675,9 +675,10 @@ export const mutations = {
       // Clear current selection first
       mutations.resetSelected();
 
-      const triageFiltered = state.listing.triageFilter !== "all";
+      const triageFilter = state.listing.triageFilter || "all";
+      const triageFiltered = ["unmarked", "keep", "maybe", "reject"].includes(triageFilter);
       const indices = triageFiltered
-        ? state.listing.triageVisibleIndices
+        ? (state.listing.triageVisibleIndices || [])
         : state.req.items.map((_item, index) => index);
 
       // When a triage filter is active, only select items that are currently visible.
