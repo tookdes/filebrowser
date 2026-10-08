@@ -77,13 +77,14 @@
       :class="{ 'triage-controls--list': isListMode }"
       @click.stop.prevent
       @touchstart.stop
+      @mousedown.stop
     >
       <button
         type="button"
         class="triage-button triage-button--keep"
         :class="{ active: triageStatus === 'keep' }"
         aria-label="Keep"
-        title="Keep (K)"
+        title="Keep"
         @click.stop.prevent="emitTriage('keep')"
       ><i class="material-symbols">check_circle</i></button>
       <button
@@ -91,7 +92,7 @@
         class="triage-button triage-button--maybe"
         :class="{ active: triageStatus === 'maybe' }"
         aria-label="Maybe"
-        title="Maybe (M)"
+        title="Maybe"
         @click.stop.prevent="emitTriage('maybe')"
       ><i class="material-symbols">help</i></button>
       <button
@@ -99,7 +100,7 @@
         class="triage-button triage-button--reject"
         :class="{ active: triageStatus === 'reject' }"
         aria-label="Reject"
-        title="Reject (X)"
+        title="Reject"
         @click.stop.prevent="emitTriage('reject')"
       ><i class="material-symbols">close</i></button>
     </div>
@@ -187,13 +188,14 @@
       :class="{ 'triage-controls--list': isListMode }"
       @click.stop.prevent
       @touchstart.stop
+      @mousedown.stop
     >
       <button
         type="button"
         class="triage-button triage-button--keep"
         :class="{ active: triageStatus === 'keep' }"
         aria-label="Keep"
-        title="Keep (K)"
+        title="Keep"
         @click.stop.prevent="emitTriage('keep')"
       ><i class="material-symbols">check_circle</i></button>
       <button
@@ -201,7 +203,7 @@
         class="triage-button triage-button--maybe"
         :class="{ active: triageStatus === 'maybe' }"
         aria-label="Maybe"
-        title="Maybe (M)"
+        title="Maybe"
         @click.stop.prevent="emitTriage('maybe')"
       ><i class="material-symbols">help</i></button>
       <button
@@ -209,7 +211,7 @@
         class="triage-button triage-button--reject"
         :class="{ active: triageStatus === 'reject' }"
         aria-label="Reject"
-        title="Reject (X)"
+        title="Reject"
         @click.stop.prevent="emitTriage('reject')"
       ><i class="material-symbols">close</i></button>
     </div>
