@@ -351,6 +351,8 @@ export interface StoreState {
     scrolling: boolean;
     scrollRatio: number;
     listingScrollTop: number;
+    triageFilter: string;
+    triageVisibleIndices: number[];
   };
   previewRaw: string;
   oldReq: unknown;
