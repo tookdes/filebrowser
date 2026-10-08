@@ -674,11 +674,17 @@ export const mutations = {
       mutations.closeHovers();
       // Clear current selection first
       mutations.resetSelected();
-      // Add all items from current directory to selection by their indices
-      state.req.items.forEach((_item, index) => {
+
+      const triageFiltered = state.listing.triageFilter !== "all";
+      const indices = triageFiltered
+        ? state.listing.triageVisibleIndices
+        : state.req.items.map((_item, index) => index);
+
+      // When a triage filter is active, only select items that are currently visible.
+      indices.forEach((index) => {
         mutations.addSelected(index);
       });
-      if (options.multiple) {
+      if (options.multiple && indices.length > 0) {
         mutations.setMultiple(true);
       }
     }
